@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InkSlate — Client flow for creative studios</title>
+  <meta name="description" content="InkSlate organiza citas, depósitos y el brief creativo de tus clientes. Para estudios de tatuaje, barberías y salones.">
+  <link rel="icon" type="image/png" href="icon-64.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <meta property="og:title" content="InkSlate — Client flow for creative studios">
+  <meta property="og:description" content="Reservas, depósitos y brief creativo en un solo lugar. Para estudios de tatuaje, barberías y salones.">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="og-image.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+    /* ─── TOKENS ─── */
+    :root {
+      --ink-bg:       #09060f;
+      --ink-bg-card:  #110e1a;
+      --ink-bg-alt:   #0d0a16;
+      --ink-accent:   #7C5CFF;
+      --ink-accent-h: #6a4be6;
+      --ink-dim:      rgba(124,92,255,0.10);
+      --ink-border:   rgba(255,255,255,0.07);
+      --ink-border-a: rgba(124,92,255,0.22);
+      --ink-text:     #ede9f8;
+      --ink-muted:    #6e6880;
+      --ink-muted2:   #9a93a8;
+      --r:            12px;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--ink-bg);
+      color: var(--ink-text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 32px;
+      background: rgba(9,6,15,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--ink-border);
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 1.125rem; font-weight: 800; letter-spacing: -0.04em;
+    }
+    .logo img { width: 32px; height: 32px; border-radius: 8px; }
+    .logo em {
+      font-style: normal;
+      background: linear-gradient(130deg, #a78bfa, var(--ink-accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-btn {
+      font-size: 0.875rem; font-weight: 600; font-family: inherit;
+      color: #fff; background: var(--ink-accent);
+      padding: 9px 20px; border-radius: 8px;
+      transition: opacity .15s, transform .15s;
+    }
+    .nav-btn:hover { opacity: .85; transform: translateY(-1px); }
+
+    /* ─── LAYOUT ─── */
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    section { padding: 96px 0; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 128px 0 108px;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; top: -100px;
+      background: radial-gradient(ellipse 70% 50% at 50% 20%, rgba(124,92,255,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.78125rem; font-weight: 500; color: var(--ink-muted2);
+      border: 1px solid var(--ink-border-a); border-radius: 100px;
+      padding: 6px 14px; margin-bottom: 36px;
+    }
+    .pill-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--ink-accent); flex-shrink: 0;
+      box-shadow: 0 0 6px var(--ink-accent);
+    }
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 6rem);
+      font-weight: 800; letter-spacing: -0.05em; line-height: 0.95;
+      background: linear-gradient(155deg, #ffffff 25%, #c4b5fd 65%, var(--ink-accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-tagline {
+      font-size: clamp(0.9375rem, 2vw, 1.125rem);
+      color: var(--ink-muted); margin-top: 14px;
+      font-weight: 500; letter-spacing: 0.01em;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.0625rem);
+      color: var(--ink-muted2); max-width: 500px;
+      margin: 24px auto 0; line-height: 1.75;
+    }
+    .hero-sub b { color: var(--ink-text); font-weight: 600; }
+    .hero-actions {
+      margin-top: 44px;
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: inherit; font-size: 0.9375rem; font-weight: 600;
+      border-radius: 9px; padding: 13px 26px;
+      transition: all .18s ease; border: none; cursor: pointer; line-height: 1;
+    }
+    .btn-accent { background: var(--ink-accent); color: #fff; }
+    .btn-accent:hover { background: var(--ink-accent-h); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(124,92,255,0.3); }
+    .btn-ghost { background: transparent; color: var(--ink-text); border: 1px solid var(--ink-border); }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.04); }
+    .btn-lg { padding: 15px 32px; font-size: 1rem; }
+
+    /* ─── HEADINGS ─── */
+    .eyebrow {
+      display: block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--ink-accent); margin-bottom: 14px;
+    }
+    .section-h2 {
+      font-size: clamp(1.75rem, 4vw, 2.375rem);
+      font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
+      margin-bottom: 56px; max-width: 580px;
+    }
+
+    /* ─── PROBLEMA ─── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .p-card {
+      background: var(--ink-bg-card); border: 1px solid var(--ink-border);
+      border-radius: var(--r); padding: 28px 24px;
+      transition: border-color .2s;
+    }
+    .p-card:hover { border-color: var(--ink-border-a); }
+    .p-card .icon { font-size: 1.5rem; margin-bottom: 16px; line-height: 1; }
+    .p-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .p-card p { font-size: 0.875rem; color: var(--ink-muted2); line-height: 1.65; }
+
+    /* ─── SOLUCIÓN ─── */
+    .sol-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .sol-card {
+      background: var(--ink-bg-card); border: 1px solid var(--ink-border);
+      border-radius: var(--r); padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: border-color .2s;
+    }
+    .sol-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--ink-accent) 0%, transparent 80%);
+      opacity: 0; transition: opacity .2s;
+    }
+    .sol-card:hover::before { opacity: 1; }
+    .sol-card:hover { border-color: var(--ink-border-a); }
+    .sol-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--ink-dim); border: 1px solid var(--ink-border-a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; margin-bottom: 20px;
+    }
+    .sol-card h3 { font-size: 1.0625rem; font-weight: 600; margin-bottom: 10px; }
+    .sol-card p { font-size: 0.875rem; color: var(--ink-muted2); line-height: 1.65; }
+
+    /* ─── FLUJO COMPLETO ─── */
+    .flujo { background: var(--ink-bg-alt); }
+
+    .flow-track {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 24px;
+      position: relative;
+    }
+
+    /* connector line */
+    .flow-step:not(:last-child) .flow-spine::after {
+      content: '';
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: -1px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--ink-border-a) 0%, var(--ink-border) 100%);
+    }
+
+    .flow-spine {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      padding-top: 4px;
+    }
+
+    .flow-num {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--ink-bg-card);
+      border: 2px solid var(--ink-border-a);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8125rem; font-weight: 700;
+      color: var(--ink-accent);
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+    }
+
+    .flow-step.highlight .flow-num {
+      background: var(--ink-accent);
+      border-color: var(--ink-accent);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(124,92,255,0.4);
+    }
+
+    .flow-body {
+      padding: 6px 0 48px;
+    }
+    .flow-step:last-child .flow-body { padding-bottom: 0; }
+
+    .flow-tag {
+      display: inline-block;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted2);
+      margin-bottom: 6px;
+    }
+
+    .flow-step.highlight .flow-tag { color: var(--ink-accent); }
+
+    .flow-body h3 {
+      font-size: 1.0625rem; font-weight: 600;
+      margin-bottom: 6px; line-height: 1.3;
+    }
+
+    .flow-body p {
+      font-size: 0.875rem; color: var(--ink-muted2); line-height: 1.65;
+      max-width: 540px;
+    }
+
+    .flow-step.highlight .flow-body h3 { color: var(--ink-text); }
+
+    .brief-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--ink-accent);
+      background: var(--ink-dim); border: 1px solid var(--ink-border-a);
+      border-radius: 100px; padding: 4px 12px;
+      margin-top: 10px;
+    }
+
+    /* ─── FEATURES ─── */
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .feat-block {
+      background: var(--ink-bg-card); border: 1px solid var(--ink-border);
+      border-radius: var(--r); padding: 32px 28px;
+    }
+    .feat-block-label {
+      font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--ink-accent);
+      margin-bottom: 20px; display: block;
+    }
+    .feat-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .feat-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.9rem; color: var(--ink-muted2); line-height: 1.5;
+    }
+    .feat-list li::before {
+      content: ''; flex-shrink: 0;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--ink-dim); border: 1px solid var(--ink-border-a);
+      margin-top: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%237C5CFF' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: center;
+    }
+    .feat-list li b { color: var(--ink-text); font-weight: 600; }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final { background: var(--ink-bg-alt); text-align: center; padding: 120px 0; }
+    .cta-final .wrap { max-width: 600px; }
+    .cta-final h2 {
+      font-size: clamp(1.875rem, 4.5vw, 2.75rem);
+      font-weight: 700; letter-spacing: -0.035em; line-height: 1.15;
+      margin-bottom: 18px;
+    }
+    .cta-final > .wrap > p {
+      font-size: 1.0625rem; color: var(--ink-muted2);
+      max-width: 420px; margin: 0 auto 44px; line-height: 1.75;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px; }
+
+    /* ─── FORM ─── */
+    .contact-form {
+      background: var(--ink-bg-card);
+      border: 1px solid var(--ink-border);
+      border-radius: var(--r);
+      padding: 36px 32px;
+      text-align: left;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-group:last-of-type { margin-bottom: 0; }
+    .form-group label {
+      font-size: 0.8125rem; font-weight: 600;
+      color: var(--ink-muted2); letter-spacing: 0.01em;
+    }
+    .form-group input,
+    .form-group textarea {
+      font-family: inherit; font-size: 0.9375rem;
+      background: var(--ink-bg); color: var(--ink-text);
+      border: 1px solid var(--ink-border);
+      border-radius: 8px; padding: 11px 14px;
+      outline: none; transition: border-color .18s;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--ink-muted); }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--ink-border-a); }
+    .form-group textarea { resize: vertical; min-height: 96px; }
+
+    .form-submit {
+      margin-top: 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .form-note {
+      font-size: 0.8rem; color: var(--ink-muted);
+    }
+    .form-success {
+      display: none;
+      margin-top: 20px; padding: 14px 18px;
+      background: rgba(124,92,255,0.1);
+      border: 1px solid var(--ink-border-a);
+      border-radius: 8px;
+      font-size: 0.9rem; color: var(--ink-muted2); text-align: center;
+    }
+
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 28px 20px; }
+      .form-submit { flex-direction: column; align-items: stretch; }
+      .form-submit .btn { text-align: center; justify-content: center; }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 32px 24px; text-align: center;
+      border-top: 1px solid var(--ink-border);
+    }
+    footer p { font-size: 0.8rem; color: var(--ink-muted); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 88px 0 72px; }
+      section { padding: 68px 0; }
+      .cta-final { padding: 80px 0; }
+      .section-h2 { margin-bottom: 36px; }
+      .sol-card, .feat-block { padding: 26px 22px; }
+      .flow-track { gap: 0; }
+      .flow-body { padding-bottom: 36px; }
+      .flow-step { grid-template-columns: 44px 1fr; gap: 0 16px; }
+      .flow-num { width: 40px; height: 40px; font-size: 0.75rem; }
+      .flow-step:not(:last-child) .flow-spine::after { left: 21px; top: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="logo">
+      <img src="icon.png" alt="InkSlate icon">
+      Ink<em>Slate</em>
+    </span>
+    <a href="#contacto" class="nav-btn">Solicitar acceso</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        Para estudios de tatuaje, barberías y salones
+      </div>
+      <h1>InkSlate</h1>
+      <p class="hero-tagline">Client flow for creative studios</p>
+      <p class="hero-sub">
+        Desde la reserva hasta el brief creativo, <b>todo en un solo lugar</b>.<br>
+        Sin caos en WhatsApp. Sin clientes que no llegan. Sin sesiones sin contexto.
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn btn-accent btn-lg">Solicitar acceso anticipado</a>
+        <a href="#flujo" class="btn btn-ghost btn-lg">Ver el flujo completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section style="background:var(--ink-bg)" id="problema">
+    <div class="wrap">
+      <span class="eyebrow">El problema</span>
+      <h2 class="section-h2">Tu agenda no debería vivir en WhatsApp</h2>
+      <div class="problem-grid">
+        <div class="p-card">
+          <div class="icon">🗓️</div>
+          <h3>Citas desordenadas</h3>
+          <p>Mensajes perdidos, horarios cruzados y clientes que aparecen sin confirmación.</p>
+        </div>
+        <div class="p-card">
+          <div class="icon">💸</div>
+          <h3>Depósitos sin control</h3>
+          <p>Capturas de pantalla, transferencias sin verificar y dinero que no cuadra.</p>
+        </div>
+        <div class="p-card">
+          <div class="icon">👻</div>
+          <h3>Clientes fantasma</h3>
+          <p>Reservan, no llegan, y vos perdés el turno y el tiempo.</p>
+        </div>
+        <div class="p-card">
+          <div class="icon">🎨</div>
+          <h3>Sesiones sin contexto</h3>
+          <p>El artista llega sin saber qué quiere el cliente. Todo se improvisa en el momento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUCIÓN -->
+  <section style="background:var(--ink-bg-alt)" id="solucion">
+    <div class="wrap">
+      <span class="eyebrow">La solución</span>
+      <h2 class="section-h2">InkSlate no reemplaza WhatsApp. Lo organiza.</h2>
+      <div class="sol-grid">
+        <div class="sol-card">
+          <div class="sol-icon">📅</div>
+          <h3>Reservas claras</h3>
+          <p>Cada cita con fecha, hora, servicio y datos del cliente. Sin malentendidos, sin dobles turnos.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-icon">🔐</div>
+          <h3>Depósitos organizados</h3>
+          <p>El cliente sube su comprobante, vos lo aprobás o rechazás con una nota. Todo registrado.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-icon">🎨</div>
+          <h3>Brief creativo</h3>
+          <p>El cliente comparte su idea con fotos de referencia antes de la sesión. El artista llega preparado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLUJO COMPLETO -->
+  <section class="flujo" id="flujo">
+    <div class="wrap">
+      <span class="eyebrow">El flujo completo</span>
+      <h2 class="section-h2">De la reserva a la sesión, sin fricciones.</h2>
+
+      <div class="flow-track">
+
+        <div class="flow-step">
+          <div class="flow-spine">
+            <div class="flow-num">01</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-tag">Cliente</span>
+            <h3>Elige servicio, artista y horario</h3>
+            <p>Desde un link del estudio, el cliente selecciona qué quiere, con quién y cuándo. Recibe confirmación por email al instante.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-spine">
+            <div class="flow-num">02</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-tag">Cliente</span>
+            <h3>Sube su depósito</h3>
+            <p>Adjunta el comprobante de pago para asegurar el turno. Sin depósito, no hay cita confirmada.</p>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-spine">
+            <div class="flow-num">03</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-tag">Admin</span>
+            <h3>Revisa y confirma</h3>
+            <p>El admin ve el comprobante, aprueba o rechaza con una nota. El cliente queda notificado del estado.</p>
+          </div>
+        </div>
+
+        <div class="flow-step highlight">
+          <div class="flow-spine">
+            <div class="flow-num">04</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-tag">Cliente</span>
+            <h3>Comparte su idea</h3>
+            <p>Una vez confirmada la cita, el cliente sube hasta 2 fotos de referencia y describe lo que tiene en mente. El artista tiene todo el contexto antes de que el cliente llegue.</p>
+            <span class="brief-badge">✦ Client brief</span>
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-spine">
+            <div class="flow-num">05</div>
+          </div>
+          <div class="flow-body">
+            <span class="flow-tag">Artista</span>
+            <h3>Llega preparado</h3>
+            <p>El artista revisa el brief desde el panel antes de la sesión. Sin improvisaciones. Sin "¿me podés mandar las referencias de nuevo?"</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section style="background:var(--ink-bg)" id="features">
+    <div class="wrap">
+      <span class="eyebrow">Qué incluye</span>
+      <h2 class="section-h2">Todo lo que necesita tu estudio, nada que no necesitás.</h2>
+      <div class="feat-grid">
+        <div class="feat-block">
+          <span class="feat-block-label">Para el cliente</span>
+          <ul class="feat-list">
+            <li><span>Página pública del estudio con logo y redes</span></li>
+            <li><span>Elige <b>servicio, artista</b> y horario disponible</span></li>
+            <li><span>Confirmación automática por <b>email</b></span></li>
+            <li><span>Sube comprobante de depósito</span></li>
+            <li><span>Ve el estado de su reserva en todo momento</span></li>
+            <li><span><b>Sube referencias e idea</b> para el brief creativo</span></li>
+          </ul>
+        </div>
+        <div class="feat-block">
+          <span class="feat-block-label">Para el admin y artista</span>
+          <ul class="feat-list">
+            <li><span><b>Vista del día</b> con todas las citas</span></li>
+            <li><span>Revisión de depósitos pendientes</span></li>
+            <li><span>Aprobar o rechazar con nota al cliente</span></li>
+            <li><span>Acceso rápido a <b>WhatsApp del cliente</b></span></li>
+            <li><span>Gestión de artistas, servicios y horarios</span></li>
+            <li><span><b>Revisa el brief</b> antes de cada sesión</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="contacto">
+    <div class="wrap">
+      <h2>Dejá de perder clientes por desorden</h2>
+      <p>InkSlate está en acceso anticipado. Completá el formulario y te contactamos para mostrarte cómo funciona.</p>
+
+      <div class="cta-btns">
+        <a href="https://wa.me/50664304601?text=Hola%2C%20quiero%20probar%20InkSlate%20para%20mi%20estudio." class="btn btn-ghost" target="_blank" rel="noopener">
+          Escribir por WhatsApp
+        </a>
+        <a href="mailto:dabrinltecr@gmail.com?subject=Quiero%20probar%20InkSlate&body=Hola%2C%20me%20interesa%20InkSlate%20para%20mi%20estudio." class="btn btn-ghost">
+          Enviar correo
+        </a>
+      </div>
+
+      <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+        <!-- ✏️ REEMPLAZÁ este valor con tu access key de web3forms.com -->
+        <input type="hidden" name="access_key" value="2230c69b-7b6e-4a48-8741-33bf0fbab705">
+        <input type="hidden" name="subject" value="Nuevo lead — InkSlate Landing">
+        <input type="hidden" name="from_name" value="InkSlate Landing">
+        <input type="hidden" name="redirect" value="false">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="estudio">Estudio</label>
+            <input type="text" id="estudio" name="estudio" placeholder="Nombre del estudio">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="+506 0000 0000">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">¿Qué manejás hoy? (opcional)</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos cuántos artistas tenés, qué usás para agendar, etc."></textarea>
+        </div>
+
+        <div class="form-submit">
+          <span class="form-note">Te respondemos en menos de 24h.</span>
+          <button type="submit" class="btn btn-accent">Solicitar acceso →</button>
+        </div>
+
+        <div class="form-success" id="form-success">
+          ✦ Listo — te contactamos pronto. Mientras tanto podés escribirnos por WhatsApp.
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        success.style.display = 'block';
+        btn.textContent = 'Enviado ✓';
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Solicitar acceso →';
+        alert('Hubo un error. Intentá de nuevo o escribinos por WhatsApp.');
+      }
+    });
+  </script>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>InkSlate &copy; 2025 &mdash; Hecho para creativos que quieren orden. by Dabrin</p>
+  </footer>
+
+</body>
+</html>
