@@ -26,7 +26,15 @@
     document.querySelectorAll('.lang-toggle button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
+    // Update placeholder text on form inputs
+    document.querySelectorAll('[data-ph-en]').forEach(el => {
+      const ph = el.dataset['ph' + lang.charAt(0).toUpperCase() + lang.slice(1)];
+      if (ph) el.placeholder = ph;
+    });
   }
+
+  // Expose for form usage
+  window.inkGetLang = getLang;
 
   // Wire on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
