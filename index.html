@@ -161,8 +161,7 @@
 
 /* Pricing */
 .v1-pricing { border-bottom: 1px solid var(--border); }
-.v1-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-@media (max-width: 880px) { .v1-pricing-grid { grid-template-columns: 1fr; } }
+.v1-pricing-single { max-width: 820px; margin: 0 auto; }
 .v1-plan {
   padding: 36px 28px;
   border: 1px solid var(--border);
@@ -171,13 +170,7 @@
   display: flex; flex-direction: column;
 }
 .v1-plan.featured { border-color: var(--accent); position: relative; box-shadow: 0 0 0 1px var(--accent), 0 30px 60px rgba(124,92,255,0.12); }
-.v1-plan.featured::before {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  padding: 4px 12px; border-radius: 999px; background: var(--accent); color: #fff;
-  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
-}
-[data-lang="en"] .v1-plan.featured::before { content: 'Most popular'; }
-[data-lang="es"] .v1-plan.featured::before { content: 'Mas popular'; }
+.v1-pricing-single .v1-plan.featured::before { display: none; }
 .v1-plan h4 {
   font-family: var(--display); font-style: italic; font-weight: 500;
   font-size: 28px; margin: 0 0 6px;
@@ -193,6 +186,21 @@
 .v1-plan li { font-size: 13.5px; color: var(--text-dim); display: flex; gap: 10px; }
 .v1-plan li::before { content: '\2713'; color: var(--good); font-size: 13px; }
 .v1-plan .btn { width: 100%; justify-content: center; }
+
+.v1-plan-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border); gap: 24px; flex-wrap: wrap; }
+.v1-plan-price-block { text-align: right; }
+.v1-plan-price-block .price { font-size: 36px; margin-bottom: 2px; }
+@media (max-width: 600px) { .v1-plan-header { flex-direction: column; } .v1-plan-price-block { text-align: left; } }
+
+.v1-plan-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin-bottom: 28px; }
+.v1-plan-features ul { padding: 0; margin: 0; list-style: none; display: grid; gap: 10px; }
+.v1-plan-features li { font-size: 13.5px; color: var(--text-dim); display: flex; gap: 10px; }
+.v1-plan-features li::before { content: '\2713'; color: var(--good); font-size: 13px; }
+@media (max-width: 600px) { .v1-plan-features { grid-template-columns: 1fr; gap: 10px; } }
+
+.v1-plan-cta-row { display: flex; align-items: center; gap: 20px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.v1-plan-cta-row .btn { width: auto; flex-shrink: 0; }
+.v1-plan-note { font-size: 13px; color: var(--text-mute); }
 
 /* About */
 .v1-about { border-bottom: 1px solid var(--border); }
@@ -380,7 +388,7 @@
       <button data-lang="en">EN</button>
       <button data-lang="es">ES</button>
     </div>
-    <a href="#waitlist" class="btn btn-ghost" data-en="Join waitlist" data-es="Lista de espera">Join waitlist</a>
+    <a href="#waitlist" class="btn btn-ghost" data-en="Start free" data-es="Empieza gratis">Start free</a>
   </div>
 </nav>
 
@@ -399,7 +407,7 @@
           A link-based booking platform for tattoo studios, barbershops and beauty salons. No app downloads, no scheduling chaos — just a beautiful page your clients actually use.
         </p>
         <div class="v1-hero-cta">
-          <a href="#waitlist" class="btn btn-primary" data-en="Join the waitlist &rarr;" data-es="Unite a la lista &rarr;">Join the waitlist &rarr;</a>
+          <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empieza gratis &rarr;">Start free &rarr;</a>
           <a href="#how" class="btn btn-ghost" data-en="How it works" data-es="Como funciona">How it works</a>
         </div>
         <div class="v1-hero-meta">
@@ -606,54 +614,42 @@
     <div class="v1-section-head">
       <div>
         <div class="eyebrow" data-en="04 &middot; Pricing" data-es="04 &middot; Precios">04 &middot; Pricing</div>
-        <h2 data-en="Simple plans. No per-booking fees." data-es="Planes simples. Sin comisiones por reserva.">Simple plans. No per-booking fees.</h2>
+        <h2 data-en="Everything included. Try it free." data-es="Todo incluido. Probalo gratis.">Everything included. Try it free.</h2>
       </div>
-      <div class="desc" data-en="Start free while you set up. Upgrade when your studio grows. Cancel anytime." data-es="Empieza gratis mientras configuras. Sube de plan cuando el estudio crezca. Cancela cuando quieras.">
-        Start free while you set up. Upgrade when your studio grows. Cancel anytime.
+      <div class="desc" data-en="No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later." data-es="Sin comisiones por reserva. Sin niveles ocultos. Una plataforma con todo lo que tu estudio necesita — empieza hoy, paga despues.">
+        No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later.
       </div>
     </div>
-    <div class="v1-pricing-grid">
-      <div class="v1-plan">
-        <h4 data-en="Solo" data-es="Solo">Solo</h4>
-        <div class="tag" data-en="One artist &middot; solo studio" data-es="Un artista &middot; estudio solo">One artist &middot; solo studio</div>
-        <div class="price">&cent;0 <small data-en="/mo" data-es="/mes">/mo</small></div>
-        <div class="meta" data-en="Free forever &middot; 1 artist" data-es="Gratis para siempre &middot; 1 artista">Free forever &middot; 1 artist</div>
-        <ul>
-          <li data-en="Booking page + booking flow" data-es="Pagina de reserva + flujo">Booking page + booking flow</li>
-          <li data-en="50 bookings / month" data-es="50 reservas / mes">50 bookings / month</li>
-          <li data-en="SINPE receipt review" data-es="Revision de SINPE">SINPE receipt review</li>
-          <li data-en="Email support" data-es="Soporte por email">Email support</li>
-        </ul>
-        <a href="#waitlist" class="btn btn-ghost" data-en="Start free" data-es="Empieza gratis">Start free</a>
-      </div>
+    <div class="v1-pricing-single">
       <div class="v1-plan featured">
-        <h4 data-en="Studio" data-es="Estudio">Studio</h4>
-        <div class="tag" data-en="2-5 artists &middot; most studios" data-es="2-5 artistas &middot; la mayoria">2-5 artists &middot; most studios</div>
-        <div class="price">&cent;18K <small data-en="/mo" data-es="/mes">/mo</small></div>
-        <div class="meta" data-en="&asymp; $30 USD &middot; billed monthly" data-es="&asymp; $30 USD &middot; mensual">&asymp; $30 USD &middot; billed monthly</div>
-        <ul>
-          <li data-en="Everything in Solo" data-es="Todo lo de Solo">Everything in Solo</li>
-          <li data-en="Unlimited bookings" data-es="Reservas ilimitadas">Unlimited bookings</li>
-          <li data-en="Brief + artist reply" data-es="Brief + respuesta del artista">Brief + artist reply</li>
-          <li data-en="Google Calendar sync" data-es="Sincronia con Google Calendar">Google Calendar sync</li>
-          <li data-en="WhatsApp shortcuts" data-es="Atajos a WhatsApp">WhatsApp shortcuts</li>
-          <li data-en="Priority support" data-es="Soporte prioritario">Priority support</li>
-        </ul>
-        <a href="#waitlist" class="btn btn-primary" data-en="Join waitlist" data-es="Unite a la lista">Join waitlist</a>
-      </div>
-      <div class="v1-plan">
-        <h4 data-en="Atelier" data-es="Atelier">Atelier</h4>
-        <div class="tag" data-en="Multi-location &middot; custom" data-es="Multi-local &middot; custom">Multi-location &middot; custom</div>
-        <div class="price" data-en="Let's talk" data-es="Hablemos">Let's talk</div>
-        <div class="meta" data-en="Pricing tailored to your team" data-es="Precio a la medida de tu equipo">Pricing tailored to your team</div>
-        <ul>
-          <li data-en="Everything in Studio" data-es="Todo lo de Estudio">Everything in Studio</li>
-          <li data-en="Multi-location dashboards" data-es="Paneles multi-local">Multi-location dashboards</li>
-          <li data-en="Custom branding &amp; domain" data-es="Branding y dominio custom">Custom branding &amp; domain</li>
-          <li data-en="Onboarding workshop" data-es="Workshop de onboarding">Onboarding workshop</li>
-          <li data-en="Dedicated support line" data-es="Linea de soporte dedicada">Dedicated support line</li>
-        </ul>
-        <a href="#waitlist" class="btn btn-ghost" data-en="Talk to sales" data-es="Habla con ventas">Talk to sales</a>
+        <div class="v1-plan-header">
+          <div>
+            <h4 data-en="InkSlate" data-es="InkSlate">InkSlate</h4>
+            <div class="tag" data-en="For tattoo studios, barbershops &amp; salons" data-es="Para estudios de tatuaje, barberias y salones">For tattoo studios, barbershops &amp; salons</div>
+          </div>
+          <div class="v1-plan-price-block">
+            <div class="price" data-en="Free to start" data-es="Gratis para empezar">Free to start</div>
+            <div class="meta" data-en="Early-adopter pricing when you're ready" data-es="Precio early-adopter cuando estes listo">Early-adopter pricing when you're ready</div>
+          </div>
+        </div>
+        <div class="v1-plan-features">
+          <ul>
+            <li data-en="Booking page + full booking flow" data-es="Pagina de reserva + flujo completo">Booking page + full booking flow</li>
+            <li data-en="Unlimited bookings" data-es="Reservas ilimitadas">Unlimited bookings</li>
+            <li data-en="Per-artist availability &amp; schedule" data-es="Disponibilidad y agenda por artista">Per-artist availability &amp; schedule</li>
+            <li data-en="SINPE deposit review" data-es="Revision de depositos SINPE">SINPE deposit review</li>
+          </ul>
+          <ul>
+            <li data-en="Brief + artist reply" data-es="Brief + respuesta del artista">Brief + artist reply</li>
+            <li data-en="Google Calendar sync" data-es="Sincronia con Google Calendar">Google Calendar sync</li>
+            <li data-en="WhatsApp shortcuts" data-es="Atajos a WhatsApp">WhatsApp shortcuts</li>
+            <li data-en="Day view + visual timeline" data-es="Vista de hoy + timeline visual">Day view + visual timeline</li>
+          </ul>
+        </div>
+        <div class="v1-plan-cta-row">
+          <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empeza gratis &rarr;">Start free &rarr;</a>
+          <span class="v1-plan-note" data-en="We set up your studio with you — no credit card, no commitment." data-es="Configuramos tu estudio con vos — sin tarjeta, sin compromiso.">We set up your studio with you — no credit card, no commitment.</span>
+        </div>
       </div>
     </div>
   </div>
@@ -700,8 +696,8 @@
       <span data-en="The studio you run," data-es="El estudio que llevas,">The studio you run,</span><br/>
       <em data-en="finally on a good system." data-es="por fin en un buen sistema.">finally on a good system.</em>
     </h2>
-    <p data-en="Join the waitlist to get early access, lock in launch pricing, and help shape what InkSlate becomes." data-es="Unite a la lista de espera para acceso anticipado, asegurar el precio de lanzamiento, y ayudar a moldear lo que InkSlate sera.">
-      Join the waitlist to get early access, lock in launch pricing, and help shape what InkSlate becomes.
+    <p data-en="Start free today — we'll set up your studio with you. No credit card, no commitment." data-es="Empieza gratis hoy — configuramos tu estudio con vos. Sin tarjeta, sin compromiso.">
+      Start free today — we'll set up your studio with you. No credit card, no commitment.
     </p>
     <form class="waitlist-form" id="waitlist-form">
       <input type="text" class="waitlist-input" id="wl-studio" required
@@ -714,10 +710,10 @@
         placeholder="you@studio.com"
         data-ph-en="you@studio.com" data-ph-es="tu@estudio.com" />
       <button type="submit" class="waitlist-submit" id="wl-btn"
-        data-en="Reserve my spot &rarr;" data-es="Reservar mi lugar &rarr;">Reserve my spot &rarr;</button>
+        data-en="Start free &rarr;" data-es="Empieza gratis &rarr;">Start free &rarr;</button>
       <div class="waitlist-msg" id="wl-msg"></div>
     </form>
-    <div style="margin-top: 14px; font-size: 12px; color: var(--text-mute);" data-en="Or contact sales for studios with 5+ artists." data-es="O contacta a ventas para estudios con 5+ artistas.">Or contact sales for studios with 5+ artists.</div>
+    <div style="margin-top: 14px; font-size: 12px; color: var(--text-mute);" data-en="Special pricing for our first studios. Limited spots." data-es="Precio especial para nuestros primeros estudios. Cupos limitados.">Special pricing for our first studios. Limited spots.</div>
   </div>
 </section>
 
@@ -768,8 +764,8 @@
   const msg = document.getElementById('wl-msg');
 
   const texts = {
-    en: { sending: 'Sending...', ok: 'Done! We\'ll be in touch soon.', err: 'Something went wrong. DM us on Instagram instead.', btn: 'Reserve my spot →' },
-    es: { sending: 'Enviando...', ok: '¡Listo! Nos ponemos en contacto pronto.', err: 'Algo salio mal. Escribinos por Instagram.', btn: 'Reservar mi lugar →' },
+    en: { sending: 'Sending...', ok: 'Done! We\'ll be in touch soon.', err: 'Something went wrong. DM us on Instagram instead.', btn: 'Start free →' },
+    es: { sending: 'Enviando...', ok: '¡Listo! Nos ponemos en contacto pronto.', err: 'Algo salio mal. Escribinos por Instagram.', btn: 'Empieza gratis →' },
   };
 
   function t(key) {
