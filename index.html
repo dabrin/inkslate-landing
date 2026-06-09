@@ -202,6 +202,28 @@
 .v1-plan-cta-row .btn { width: auto; flex-shrink: 0; }
 .v1-plan-note { font-size: 13px; color: var(--text-mute); }
 
+/* WhatsApp FAB */
+.wa-fab {
+  position: fixed; bottom: 24px; right: 24px; z-index: 100;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.wa-fab:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
+
+/* Demo link */
+.v1-demo-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 16px; padding: 10px 18px;
+  border: 1px solid var(--border-hi); border-radius: 12px;
+  font-size: 13px; color: var(--text-dim);
+  transition: border-color 160ms ease, color 160ms ease;
+}
+.v1-demo-link:hover { border-color: var(--accent); color: var(--text); }
+.v1-demo-link .arrow { color: var(--accent); }
+
 /* About */
 .v1-about { border-bottom: 1px solid var(--border); }
 .v1-about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
@@ -378,7 +400,7 @@
     <strong>InkSlate</strong>
   </div>
   <div class="v1-nav-links">
-    <a href="#how" data-en="How it works" data-es="Como funciona">How it works</a>
+    <a href="#how" data-en="How it works" data-es="Cómo funciona">How it works</a>
     <a href="#features" data-en="Features" data-es="Funciones">Features</a>
     <a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
     <a href="#about" data-en="About" data-es="Sobre">About</a>
@@ -397,18 +419,18 @@
   <div class="container">
     <div class="v1-hero-grid">
       <div>
-        <div class="eyebrow" data-en="Issue 01 &middot; For independent studios" data-es="Edicion 01 &middot; Para estudios independientes">Issue 01 &middot; For independent studios</div>
+        <div class="eyebrow" data-en="Issue 01 &middot; For independent studios" data-es="Edición 01 &middot; Para estudios independientes">Issue 01 &middot; For independent studios</div>
         <h1>
           <span data-en="Booking that respects" data-es="Reservas que respetan">Booking that respects</span><br/>
           <em class="accent" data-en="the craft." data-es="el oficio.">the craft.</em>
         </h1>
         <p class="lede" data-en="A link-based booking platform for tattoo studios, barbershops and beauty salons. No app downloads, no scheduling chaos — just a beautiful page your clients actually use."
-           data-es="Una plataforma de reservas basada en un link, para estudios de tatuaje, barberias y salones. Sin apps que descargar, sin caos de agenda — solo una pagina hermosa que tus clientes si usan.">
+           data-es="Una plataforma de reservas basada en un link, para estudios de tatuaje, barberías y salones. Sin apps que descargar, sin caos de agenda — solo una página hermosa que tus clientes sí usan.">
           A link-based booking platform for tattoo studios, barbershops and beauty salons. No app downloads, no scheduling chaos — just a beautiful page your clients actually use.
         </p>
         <div class="v1-hero-cta">
           <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empieza gratis &rarr;">Start free &rarr;</a>
-          <a href="#how" class="btn btn-ghost" data-en="How it works" data-es="Como funciona">How it works</a>
+          <a href="#how" class="btn btn-ghost" data-en="How it works" data-es="Cómo funciona">How it works</a>
         </div>
         <div class="v1-hero-meta">
           <div>
@@ -435,7 +457,7 @@
               <div class="eyebrow-tag" data-en="Tattoo studio" data-es="Estudio de tatuaje">Tattoo studio</div>
               <div class="title">Hollow Hand <em>Tattoo</em></div>
               <div class="mini-row">
-                <span data-en="Fine line &middot; small" data-es="Linea fina &middot; pequeno">Fine line &middot; small</span>
+                <span data-en="Fine line &middot; small" data-es="Línea fina &middot; pequeño">Fine line &middot; small</span>
                 <span class="price">&cent;60K</span>
               </div>
               <div class="mini-row hi">
@@ -443,7 +465,7 @@
                 <span class="price">&cent;132K</span>
               </div>
               <div class="mini-row">
-                <span data-en="Custom design" data-es="Diseno personal">Custom design</span>
+                <span data-en="Custom design" data-es="Diseño personalizado">Custom design</span>
                 <span class="price">&cent;192K</span>
               </div>
             </div>
@@ -458,13 +480,13 @@
               <div class="checkbubble">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-              <div class="eyebrow-tag" data-en="Confirmation" data-es="Confirmacion">Confirmation</div>
+              <div class="eyebrow-tag" data-en="Confirmation" data-es="Confirmación">Confirmation</div>
               <h5 data-en="You're booked." data-es="Reserva hecha!">You're booked.</h5>
               <p data-en="Save the link to come back later." data-es="Guarda el link para volver luego.">Save the link to come back later.</p>
               <div class="code">INK-7Q4F2</div>
               <div style="margin-top: 12px; padding: 10px 14px; border: 1px solid var(--border-hi); border-radius: 12px; font-size: 11px; color: var(--text-dim); text-align:left;">
                 <div style="font-size: 9px; color: var(--text-mute); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 4px;" data-en="When" data-es="Cuando">When</div>
-                <div data-en="Wed &middot; 14:00 &middot; with Mara" data-es="Mie &middot; 14:00 &middot; con Mara">Wed &middot; 14:00 &middot; with Mara</div>
+                <div data-en="Wed &middot; 14:00 &middot; with Mara" data-es="Mié &middot; 14:00 &middot; con Mara">Wed &middot; 14:00 &middot; with Mara</div>
               </div>
             </div>
           </div>
@@ -479,46 +501,46 @@
   <div class="container">
     <div class="v1-section-head">
       <div>
-        <div class="eyebrow" data-en="01 &middot; For whom" data-es="01 &middot; Para quien">01 &middot; For whom</div>
+        <div class="eyebrow" data-en="01 &middot; For whom" data-es="01 &middot; Para quién">01 &middot; For whom</div>
         <h2 data-en="Built for studios that take their craft seriously." data-es="Hecho para estudios que se toman el oficio en serio.">Built for studios that take their craft seriously.</h2>
       </div>
-      <div class="desc" data-en="One platform, three disciplines. The booking flow is the same; the details are tuned to how each one actually works." data-es="Una plataforma, tres disciplinas. El flujo es el mismo; los detalles se ajustan a como trabaja cada uno.">
+      <div class="desc" data-en="One platform, three disciplines. The booking flow is the same; the details are tuned to how each one actually works." data-es="Una plataforma, tres disciplinas. El flujo es el mismo; los detalles se ajustan a cómo trabaja cada uno.">
         One platform, three disciplines. The booking flow is the same; the details are tuned to how each one actually works.
       </div>
     </div>
     <div class="v1-for-grid">
       <div class="v1-for-card">
         <div class="badge" data-en="Tattoo studios" data-es="Estudios de tatuaje">Tattoo studios</div>
-        <h3 data-en="Sessions, briefs, deposits." data-es="Sesiones, briefs, depositos.">Sessions, briefs, deposits.</h3>
-        <p data-en="Move clients from DM chaos to a single link. Collect references, approve a deposit, lock the slot." data-es="Saca a los clientes del caos de los DMs a un unico link. Recibe referencias, aprueba el deposito, asegura el espacio.">
+        <h3 data-en="Sessions, briefs, deposits." data-es="Sesiones, briefs, depósitos.">Sessions, briefs, deposits.</h3>
+        <p data-en="Move clients from DM chaos to a single link. Collect references, approve a deposit, lock the slot." data-es="Saca a los clientes del caos de los DMs a un único link. Recibe referencias, aprobá el depósito, asegurá el espacio.">
           Move clients from DM chaos to a single link. Collect references, approve a deposit, lock the slot.
         </p>
         <ul>
-          <li data-en="SINPE receipt review" data-es="Revision de comprobante SINPE">SINPE receipt review</li>
+          <li data-en="SINPE receipt review" data-es="Revisión de comprobante SINPE">SINPE receipt review</li>
           <li data-en="Reference upload + artist reply" data-es="Subida de referencias + respuesta del artista">Reference upload + artist reply</li>
           <li data-en="Per-artist availability" data-es="Disponibilidad por artista">Per-artist availability</li>
         </ul>
       </div>
       <div class="v1-for-card">
-        <div class="badge" data-en="Barbershops" data-es="Barberias">Barbershops</div>
+        <div class="badge" data-en="Barbershops" data-es="Barberías">Barbershops</div>
         <h3 data-en="High-volume, on the dot." data-es="Alto volumen, puntuales.">High-volume, on the dot.</h3>
-        <p data-en="A barbershop runs on speed. The day view shows you the next 12 hours; clients pick a slot and walk in." data-es="Una barberia corre por velocidad. La vista de hoy muestra las proximas 12 horas; los clientes eligen un slot y entran.">
+        <p data-en="A barbershop runs on speed. The day view shows you the next 12 hours; clients pick a slot and walk in." data-es="Una barbería corre por velocidad. La vista de hoy muestra las próximas 12 horas; los clientes eligen un slot y entran.">
           A barbershop runs on speed. The day view shows you the next 12 hours; clients pick a slot and walk in.
         </p>
         <ul>
           <li data-en="3-tap booking" data-es="Reserva en 3 toques">3-tap booking</li>
-          <li data-en="No-deposit option" data-es="Opcion sin deposito">No-deposit option</li>
+          <li data-en="No-deposit option" data-es="Opción sin depósito">No-deposit option</li>
           <li data-en="Walk-in friendly slots" data-es="Slots amigables a walk-ins">Walk-in friendly slots</li>
         </ul>
       </div>
       <div class="v1-for-card">
         <div class="badge" data-en="Beauty salons" data-es="Salones de belleza">Beauty salons</div>
         <h3 data-en="Long sessions, repeat clients." data-es="Sesiones largas, clientes habituales.">Long sessions, repeat clients.</h3>
-        <p data-en="Color, highlights, brows — multi-step services with buffers between bookings, and a memory for who's been before." data-es="Color, mechas, cejas — servicios de varios pasos con buffers entre citas, y memoria de quien ya vino.">
+        <p data-en="Color, highlights, brows — multi-step services with buffers between bookings, and a memory for who's been before." data-es="Color, mechas, cejas — servicios de varios pasos con buffers entre citas, y memoria de quién ya vino.">
           Color, highlights, brows — multi-step services with buffers between bookings, and a memory for who's been before.
         </p>
         <ul>
-          <li data-en="Service buffers + max-per-day" data-es="Buffers + maximo por dia">Service buffers + max-per-day</li>
+          <li data-en="Service buffers + max-per-day" data-es="Buffers + máximo por día">Service buffers + max-per-day</li>
           <li data-en="Returning client recognition" data-es="Reconocimiento de clientes habituales">Returning client recognition</li>
           <li data-en="Multi-language client UI" data-es="Interfaz multi-idioma">Multi-language client UI</li>
         </ul>
@@ -539,18 +561,18 @@
     <div class="v1-how-grid">
       <div class="v1-how-step">
         <div class="num">01</div>
-        <h4 data-en="Drop your link" data-es="Pone tu link">Drop your link</h4>
-        <p data-en="One URL goes in your Instagram bio. Clients land on your studio page — no app, no signup, no friction." data-es="Una URL va en tu bio de Instagram. Los clientes caen en tu pagina — sin app, sin signup, sin friccion.">One URL goes in your Instagram bio. Clients land on your studio page — no app, no signup, no friction.</p>
+        <h4 data-en="Drop your link" data-es="Poné tu link">Drop your link</h4>
+        <p data-en="One URL goes in your Instagram bio. Clients land on your studio page — no app, no signup, no friction." data-es="Una URL va en tu bio de Instagram. Los clientes caen en tu página — sin app, sin signup, sin fricción.">One URL goes in your Instagram bio. Clients land on your studio page — no app, no signup, no friction.</p>
       </div>
       <div class="v1-how-step">
         <div class="num">02</div>
         <h4 data-en="They pick &amp; request" data-es="Ellos eligen y piden">They pick &amp; request</h4>
-        <p data-en="Service, artist, time, deposit — all in one flow. The request hits your dashboard with status &ldquo;pending.&rdquo;" data-es="Servicio, artista, hora, deposito — todo en un flujo. La solicitud llega a tu panel como &ldquo;pendiente&rdquo;.">Service, artist, time, deposit — all in one flow. The request hits your dashboard with status &ldquo;pending.&rdquo;</p>
+        <p data-en="Service, artist, time, deposit — all in one flow. The request hits your dashboard with status &ldquo;pending.&rdquo;" data-es="Servicio, artista, hora, depósito — todo en un flujo. La solicitud llega a tu panel como &ldquo;pendiente&rdquo;.">Service, artist, time, deposit — all in one flow. The request hits your dashboard with status &ldquo;pending.&rdquo;</p>
       </div>
       <div class="v1-how-step">
         <div class="num">03</div>
-        <h4 data-en="You review &amp; confirm" data-es="Tu revisas y confirmas">You review &amp; confirm</h4>
-        <p data-en="Approve the deposit receipt with one tap. The booking flips to confirmed and the client gets their code." data-es="Aprueba el comprobante con un toque. La reserva se confirma y el cliente recibe su codigo.">Approve the deposit receipt with one tap. The booking flips to confirmed and the client gets their code.</p>
+        <h4 data-en="You review &amp; confirm" data-es="Vos revisás y confirmás">You review &amp; confirm</h4>
+        <p data-en="Approve the deposit receipt with one tap. The booking flips to confirmed and the client gets their code." data-es="Aprueba el comprobante con un toque. La reserva se confirma y el cliente recibe su código.">Approve the deposit receipt with one tap. The booking flips to confirmed and the client gets their code.</p>
       </div>
       <div class="v1-how-step">
         <div class="num">04</div>
@@ -581,28 +603,28 @@
       </div>
       <div class="v1-feat">
         <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v4a1 1 0 0 0 1 1h4M5 3h9l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9 13l2 2 4-4"/></svg></div>
-        <h4 data-en="Deposit review queue" data-es="Cola de revision de depositos">Deposit review queue</h4>
-        <p data-en="Receipts arrive in a single queue. Approve or reject with a note — clients see your reason instantly." data-es="Los comprobantes llegan a una sola cola. Aprueba o rechaza con una nota — los clientes ven tu razon al instante.">Receipts arrive in a single queue. Approve or reject with a note — clients see your reason instantly.</p>
+        <h4 data-en="Deposit review queue" data-es="Cola de revisión de depósitos">Deposit review queue</h4>
+        <p data-en="Receipts arrive in a single queue. Approve or reject with a note — clients see your reason instantly." data-es="Los comprobantes llegan a una sola cola. Aprueba o rechaza con una nota — los clientes ven tu razón al instante.">Receipts arrive in a single queue. Approve or reject with a note — clients see your reason instantly.</p>
       </div>
       <div class="v1-feat">
         <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
         <h4 data-en="Per-artist availability" data-es="Disponibilidad por artista">Per-artist availability</h4>
-        <p data-en="Each artist sets their hours, slot length, buffer, and max bookings. The studio composes the calendar." data-es="Cada artista define sus horas, duracion de slot, buffer y maximo de reservas. El estudio compone la agenda.">Each artist sets their hours, slot length, buffer, and max bookings. The studio composes the calendar.</p>
+        <p data-en="Each artist sets their hours, slot length, buffer, and max bookings. The studio composes the calendar." data-es="Cada artista define sus horas, duración de slot, buffer y máximo de reservas. El estudio compone la agenda.">Each artist sets their hours, slot length, buffer, and max bookings. The studio composes the calendar.</p>
       </div>
       <div class="v1-feat">
         <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 14h3"/></svg></div>
         <h4 data-en="Brief + reply" data-es="Brief + respuesta">Brief + reply</h4>
-        <p data-en="Clients send up to 2 references and a note. Artists reply with sketches, message, and a lock-in toggle." data-es="Los clientes envian hasta 2 referencias y una nota. Los artistas responden con sketches y mensaje.">Clients send up to 2 references and a note. Artists reply with sketches, message, and a lock-in toggle.</p>
+        <p data-en="Clients send up to 2 references and a note. Artists reply with sketches, message, and a lock-in toggle." data-es="Los clientes envían hasta 2 referencias y una nota. Los artistas responden con sketches y mensaje.">Clients send up to 2 references and a note. Artists reply with sketches, message, and a lock-in toggle.</p>
       </div>
       <div class="v1-feat">
         <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 1 1-3.4-6.8L21 3v6h-6"/></svg></div>
-        <h4 data-en="Google Calendar sync" data-es="Sincronia con Google Calendar">Google Calendar sync</h4>
-        <p data-en="Two-way sync per artist. External events block booking slots; new bookings push to the artist's calendar." data-es="Sincronia de doble via por artista. Eventos externos bloquean slots; nuevas reservas se envian al calendario.">Two-way sync per artist. External events block booking slots; new bookings push to the artist's calendar.</p>
+        <h4 data-en="Google Calendar sync" data-es="Sincronía con Google Calendar">Google Calendar sync</h4>
+        <p data-en="Two-way sync per artist. External events block booking slots; new bookings push to the artist's calendar." data-es="Sincronía de doble vía por artista. Eventos externos bloquean slots; nuevas reservas se envían al calendario.">Two-way sync per artist. External events block booking slots; new bookings push to the artist's calendar.</p>
       </div>
       <div class="v1-feat">
         <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h18l-2 14H5L3 5zM8 9v6M12 9v6M16 9v6"/></svg></div>
         <h4 data-en="No-account clients" data-es="Clientes sin cuenta">No-account clients</h4>
-        <p data-en="Bookings are saved to the device. A magic email link lets clients pick up where they left off on any phone." data-es="Las reservas se guardan en el dispositivo. Un magic link por email les permite continuar en cualquier telefono.">Bookings are saved to the device. A magic email link lets clients pick up where they left off on any phone.</p>
+        <p data-en="Bookings are saved to the device. A magic email link lets clients pick up where they left off on any phone." data-es="Las reservas se guardan en el dispositivo. Un magic link por email les permite continuar en cualquier teléfono.">Bookings are saved to the device. A magic email link lets clients pick up where they left off on any phone.</p>
       </div>
     </div>
   </div>
@@ -616,7 +638,7 @@
         <div class="eyebrow" data-en="04 &middot; Pricing" data-es="04 &middot; Precios">04 &middot; Pricing</div>
         <h2 data-en="Everything included. Try it free." data-es="Todo incluido. Probalo gratis.">Everything included. Try it free.</h2>
       </div>
-      <div class="desc" data-en="No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later." data-es="Sin comisiones por reserva. Sin niveles ocultos. Una plataforma con todo lo que tu estudio necesita — empieza hoy, paga despues.">
+      <div class="desc" data-en="No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later." data-es="Sin comisiones por reserva. Sin niveles ocultos. Una plataforma con todo lo que tu estudio necesita — empezá hoy, pagá después.">
         No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later.
       </div>
     </div>
@@ -625,31 +647,35 @@
         <div class="v1-plan-header">
           <div>
             <h4 data-en="InkSlate" data-es="InkSlate">InkSlate</h4>
-            <div class="tag" data-en="For tattoo studios, barbershops &amp; salons" data-es="Para estudios de tatuaje, barberias y salones">For tattoo studios, barbershops &amp; salons</div>
+            <div class="tag" data-en="For tattoo studios, barbershops &amp; salons" data-es="Para estudios de tatuaje, barberías y salones">For tattoo studios, barbershops &amp; salons</div>
           </div>
           <div class="v1-plan-price-block">
             <div class="price" data-en="Free to start" data-es="Gratis para empezar">Free to start</div>
-            <div class="meta" data-en="Early-adopter pricing when you're ready" data-es="Precio early-adopter cuando estes listo">Early-adopter pricing when you're ready</div>
+            <div class="meta" data-en="Early-adopter pricing when you're ready" data-es="Precio early-adopter cuando estés listo">Early-adopter pricing when you're ready</div>
           </div>
         </div>
         <div class="v1-plan-features">
           <ul>
-            <li data-en="Booking page + full booking flow" data-es="Pagina de reserva + flujo completo">Booking page + full booking flow</li>
+            <li data-en="Booking page + full booking flow" data-es="Página de reserva + flujo completo">Booking page + full booking flow</li>
             <li data-en="Unlimited bookings" data-es="Reservas ilimitadas">Unlimited bookings</li>
             <li data-en="Per-artist availability &amp; schedule" data-es="Disponibilidad y agenda por artista">Per-artist availability &amp; schedule</li>
-            <li data-en="SINPE deposit review" data-es="Revision de depositos SINPE">SINPE deposit review</li>
+            <li data-en="SINPE deposit review" data-es="Revisión de depósitos SINPE">SINPE deposit review</li>
           </ul>
           <ul>
             <li data-en="Brief + artist reply" data-es="Brief + respuesta del artista">Brief + artist reply</li>
-            <li data-en="Google Calendar sync" data-es="Sincronia con Google Calendar">Google Calendar sync</li>
+            <li data-en="Google Calendar sync" data-es="Sincronía con Google Calendar">Google Calendar sync</li>
             <li data-en="WhatsApp shortcuts" data-es="Atajos a WhatsApp">WhatsApp shortcuts</li>
             <li data-en="Day view + visual timeline" data-es="Vista de hoy + timeline visual">Day view + visual timeline</li>
           </ul>
         </div>
         <div class="v1-plan-cta-row">
-          <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empeza gratis &rarr;">Start free &rarr;</a>
+          <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empezá gratis &rarr;">Start free &rarr;</a>
           <span class="v1-plan-note" data-en="We set up your studio with you — no credit card, no commitment." data-es="Configuramos tu estudio con vos — sin tarjeta, sin compromiso.">We set up your studio with you — no credit card, no commitment.</span>
         </div>
+        <a href="https://inkslate.lat/ryutattoo" class="v1-demo-link" target="_blank" rel="noopener">
+          <span data-en="See a live demo studio" data-es="Mira un estudio demo en vivo">See a live demo studio</span>
+          <span class="arrow">&rarr;</span>
+        </a>
       </div>
     </div>
   </div>
@@ -662,21 +688,21 @@
       <div class="v1-portrait"><span class="initial">D</span></div>
       <div>
         <div class="eyebrow" data-en="05 &middot; About the maker" data-es="05 &middot; Sobre el creador">05 &middot; About the maker</div>
-        <h3 data-en="Hi, I'm Dabrin. I build the kind of software I'd want to use." data-es="Hola, soy Dabrin. Construyo software que yo mismo querria usar.">
+        <h3 data-en="Hi, I'm Dabrin. I build the kind of software I'd want to use." data-es="Hola, soy Dabrin. Construyo software que yo mismo querría usar.">
           Hi, I'm Dabrin. I build the kind of software I'd want to use.
         </h3>
         <p data-en="InkSlate started as a side project after watching a friend who runs a tattoo studio drown in DMs every week. The booking apps out there were either built for nail salons in 2014, or generic SaaS that doesn't speak the language of independent studios."
-           data-es="InkSlate empezo como un side project despues de ver a un amigo que tiene un estudio de tatuaje ahogarse en DMs cada semana. Las apps de reservas que existen estan hechas o para salones de unas en 2014, o son SaaS genericos que no hablan el idioma de los estudios independientes.">
+           data-es="InkSlate empezó como un side project después de ver a un amigo que tiene un estudio de tatuaje ahogarse en DMs cada semana. Las apps de reservas que existen están hechas o para salones de uñas en 2014, o son SaaS genéricos que no hablan el idioma de los estudios independientes.">
           InkSlate started as a side project after watching a friend who runs a tattoo studio drown in DMs every week. The booking apps out there were either built for nail salons in 2014, or generic SaaS that doesn't speak the language of independent studios.
         </p>
         <p data-en="So I'm building something focused: editorial design, a flow that respects everyone's time, and a price that makes sense for a single artist or a small atelier. Built in Costa Rica, from day one."
-           data-es="Asi que estoy construyendo algo enfocado: diseno editorial, un flujo que respeta el tiempo de todos, y un precio que tiene sentido para un artista solo o un atelier pequeno. Hecho en Costa Rica, desde el dia uno.">
+           data-es="Así que estoy construyendo algo enfocado: diseño editorial, un flujo que respeta el tiempo de todos, y un precio que tiene sentido para un artista solo o un atelier pequeño. Hecho en Costa Rica, desde el día uno.">
           So I'm building something focused: editorial design, a flow that respects everyone's time, and a price that makes sense for a single artist or a small atelier. Built in Costa Rica, from day one.
         </p>
         <div class="signature">
           <div>
             <strong>Dabrin Najera</strong>
-            <span class="role" data-en="Founder &middot; Designer &middot; Engineer" data-es="Fundador &middot; Disenador &middot; Ingeniero">Founder &middot; Designer &middot; Engineer</span>
+            <span class="role" data-en="Founder &middot; Designer &middot; Engineer" data-es="Fundador &middot; Diseñador &middot; Ingeniero">Founder &middot; Designer &middot; Engineer</span>
           </div>
           <div style="display:flex; gap:10px; margin-left:auto;">
             <a href="https://instagram.com/dabrin.najera" class="btn btn-ghost" style="padding: 8px 14px; font-size: 12px;">@dabrin.najera</a>
@@ -691,7 +717,7 @@
 <!-- WAITLIST CTA -->
 <section class="v1-cta-band" id="waitlist">
   <div class="container-tight">
-    <div class="eyebrow" data-en="Early access &middot; Issue 01" data-es="Acceso anticipado &middot; Edicion 01">Early access &middot; Issue 01</div>
+    <div class="eyebrow" data-en="Early access &middot; Issue 01" data-es="Acceso anticipado &middot; Edición 01">Early access &middot; Issue 01</div>
     <h2>
       <span data-en="The studio you run," data-es="El estudio que llevas,">The studio you run,</span><br/>
       <em data-en="finally on a good system." data-es="por fin en un buen sistema.">finally on a good system.</em>
@@ -733,7 +759,7 @@
       <div>
         <h5 data-en="Product" data-es="Producto">Product</h5>
         <div class="v1-footer-links">
-          <a href="#how" data-en="How it works" data-es="Como funciona">How it works</a>
+          <a href="#how" data-en="How it works" data-es="Cómo funciona">How it works</a>
           <a href="#features" data-en="Features" data-es="Funciones">Features</a>
           <a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
           <a href="#waitlist" data-en="Waitlist" data-es="Lista de espera">Waitlist</a>
@@ -750,10 +776,15 @@
     </div>
     <div class="v1-footer-bottom">
       <span data-en="&copy; 2026 InkSlate. All rights reserved." data-es="&copy; 2026 InkSlate. Todos los derechos reservados.">&copy; 2026 InkSlate. All rights reserved.</span>
-      <span data-en="Designed and built in San Jose, CR." data-es="Disenado y hecho en San Jose, CR.">Designed and built in San Jose, CR.</span>
+      <span data-en="Designed and built in San Jose, CR." data-es="Diseñado y hecho en San José, CR.">Designed and built in San Jose, CR.</span>
     </div>
   </div>
 </footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/50664304601?text=Hola!%20Me%20interesa%20InkSlate%20para%20mi%20estudio" class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script src="i18n.js"></script>
 <script>
@@ -765,7 +796,7 @@
 
   const texts = {
     en: { sending: 'Sending...', ok: 'Done! We\'ll be in touch soon.', err: 'Something went wrong. DM us on Instagram instead.', btn: 'Start free →' },
-    es: { sending: 'Enviando...', ok: '¡Listo! Nos ponemos en contacto pronto.', err: 'Algo salio mal. Escribinos por Instagram.', btn: 'Empieza gratis →' },
+    es: { sending: 'Enviando...', ok: '¡Listo! Nos ponemos en contacto pronto.', err: 'Algo salió mal. Escribinos por Instagram.', btn: 'Empieza gratis →' },
   };
 
   function t(key) {
