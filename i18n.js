@@ -8,12 +8,12 @@
   function getLang() {
     const stored = localStorage.getItem(KEY);
     if (stored && supported.includes(stored)) return stored;
-    const nav = (navigator.language || 'en').slice(0, 2);
-    return supported.includes(nav) ? nav : 'en';
+    return 'es';
   }
 
   function setLang(lang) {
     localStorage.setItem(KEY, lang);
+    document.documentElement.lang = lang;
     document.documentElement.dataset.lang = lang;
     document.querySelectorAll('[data-en]').forEach(el => {
       const text = el.dataset[lang];

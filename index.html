@@ -1,802 +1,432 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="es" data-lang="es">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>InkSlate — Booking that respects the craft</title>
-<meta name="description" content="A link-based booking platform built for tattoo studios, barbershops and beauty salons. No app downloads, no scheduling chaos.">
-<meta property="og:title" content="InkSlate — Booking that respects the craft" />
-<meta property="og:description" content="A link-based booking platform for tattoo studios, barbershops and beauty salons." />
-<meta property="og:image" content="og-image.png" />
+<title>Software de reservas en Costa Rica para tatuaje, barbería y belleza | InkSlate</title>
+<meta name="description" content="InkSlate es el sistema de citas y reservas online para estudios de tatuaje, barberías, salones de belleza y nail artists en Costa Rica. Tu cliente reserva sin crear cuenta, el horario queda apartado al instante y vos gestionás la agenda desde el celular." />
+<link rel="canonical" href="https://inkslate.lat/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="es_CR" />
+<meta property="og:site_name" content="InkSlate" />
+<meta property="og:url" content="https://inkslate.lat/" />
+<meta property="og:title" content="Software de reservas en Costa Rica para tatuaje, barbería y belleza" />
+<meta property="og:description" content="Reservas online, agenda por artista y depósitos por SINPE. Tu cliente reserva sin crear cuenta. Primer mes gratis, después ₡10.000 al mes." />
+<meta property="og:image" content="og-image.png" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="geo.region" content="CR" />
 <link rel="icon" type="image/png" href="icon-64.png" />
 <link rel="apple-touch-icon" href="icon.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link rel="preload" as="image" href="./assets/inkslate-reserva-confirmada-codigo.png" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..600;1,400..600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://inkslate.lat/#org","name":"InkSlate","url":"https://inkslate.lat/","areaServed":{"@type":"Country","name":"Costa Rica"}},{"@type":"SoftwareApplication","name":"InkSlate","applicationCategory":"BusinessApplication","operatingSystem":"iOS, Android, Web","url":"https://inkslate.lat/","publisher":{"@id":"https://inkslate.lat/#org"},"inLanguage":["es","en"],"offers":{"@type":"Offer","price":"10000","priceCurrency":"CRC","availability":"https://schema.org/InStock","description":"Primer mes gratis, después ₡10.000 al mes por estudio."}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Mis clientes tienen que instalar una app para reservar?","acceptedAnswer":{"@type":"Answer","text":"No. El cliente abre el link del estudio desde el navegador y reserva sin crear cuenta ni contraseña. Si querés, también puede usar la app de iOS o Android, pero nunca es obligatorio."}},{"@type":"Question","name":"¿Tengo que dejar de usar WhatsApp?","acceptedAnswer":{"@type":"Answer","text":"No. InkSlate convive con WhatsApp. Lo que llega por chat o Instagram lo anotás manualmente en la misma agenda, así tenés un solo calendario en vez de dos."}},{"@type":"Question","name":"¿Sirve si trabajo solo, sin equipo?","acceptedAnswer":{"@type":"Answer","text":"Sí. Podés tener un único artista con tus servicios, precios y horarios. La agenda por artista sirve igual cuando el artista sos vos."}},{"@type":"Question","name":"¿Cómo funcionan los depósitos por SINPE?","acceptedAnswer":{"@type":"Answer","text":"Definís qué servicios requieren depósito y de cuánto. El cliente sube el comprobante desde el celular, un asistente automático pre-lee el monto, la fecha y el remitente, y vos aprobás o rechazás con un toque."}},{"@type":"Question","name":"¿Cuánto cuesta InkSlate en Costa Rica?","acceptedAnswer":{"@type":"Answer","text":"El primer mes es gratis y después son ₡10.000 al mes por estudio, sin comisión por reserva y sin contrato."}},{"@type":"Question","name":"¿Se sincroniza con Google Calendar?","acceptedAnswer":{"@type":"Answer","text":"Sí, en ambos sentidos: las reservas de InkSlate aparecen en tu Google Calendar y lo que bloqueás allá se refleja en tu disponibilidad."}},{"@type":"Question","name":"¿Sirve para barberías, salones de belleza y nail artists, o solo para tatuaje?","acceptedAnswer":{"@type":"Answer","text":"Sirve para cualquier negocio que trabaje con citas. El vocabulario y las opciones cambian según el tipo de negocio: el brief creativo con fotos de referencia, por ejemplo, se activa solo en los servicios que lo necesitan."}},{"@type":"Question","name":"¿Qué pasa si dos personas eligen el mismo horario?","acceptedAnswer":{"@type":"Answer","text":"No puede pasar. Apenas alguien elige un horario queda apartado para esa persona, con un contador visible del tiempo que tiene para completar la reserva."}}]}]}</script>
 <style>
-/* ─── V1 Editorial ─── */
-.v1-nav {
-  position: sticky; top: 0; z-index: 50;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 32px;
-  background: rgba(11,11,16,0.78);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-.v1-brand { display: flex; align-items: center; gap: 10px; font-size: 18px; }
-.v1-brand .glyph {
-  width: 32px; height: 32px; border-radius: 8px;
-  background: linear-gradient(135deg, var(--cover-from), var(--cover-to));
-  display: grid; place-items: center;
-  font-family: var(--display); font-style: italic; font-weight: 600; font-size: 18px;
-  color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-}
-.v1-nav-links { display: flex; gap: 28px; font-size: 13px; color: var(--text-dim); }
-.v1-nav-links a:hover { color: var(--text); }
-.v1-nav-right { display: flex; align-items: center; gap: 14px; }
-@media (max-width: 720px) { .v1-nav-links { display: none; } .v1-nav { padding: 14px 20px; } }
-
-/* Hero — magazine cover style */
-.v1-hero {
-  position: relative;
-  padding: 120px 0 80px;
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
-}
-.v1-hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(900px 500px at 80% 0%, rgba(124,92,255,0.18), transparent 60%);
-  pointer-events: none;
-}
-.v1-hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 60px; align-items: center; }
-@media (max-width: 880px) { .v1-hero-grid { grid-template-columns: 1fr; } }
-
-.v1-hero h1 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: clamp(56px, 9vw, 132px);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  margin: 24px 0 28px;
-}
-.v1-hero h1 .accent { color: var(--accent); }
-.v1-hero p.lede {
-  font-size: 19px; color: var(--text-dim); max-width: 480px;
-  line-height: 1.55;
-}
-.v1-hero-cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
-.v1-hero-meta {
-  display: flex; gap: 24px; margin-top: 48px;
-  padding-top: 24px; border-top: 1px solid var(--border);
-  font-size: 12px; color: var(--text-mute);
-}
-.v1-hero-meta strong { color: var(--text); font-weight: 500; display: block; font-size: 13px; }
-
-/* Hero phone art */
-.v1-hero-art { position: relative; height: 600px; display: grid; place-items: center; }
-.v1-hero-art .phone-back {
-  position: absolute; left: 50%; top: 50%; transform: translate(-65%, -45%) rotate(-6deg);
-  filter: blur(0.3px); opacity: 0.85;
-}
-.v1-hero-art .phone-front {
-  position: relative; transform: translate(15%, 5%) rotate(4deg);
-  z-index: 2;
-}
-.v1-hero-art .glow {
-  position: absolute; inset: -10%; pointer-events: none;
-  background: radial-gradient(60% 50% at 50% 50%, rgba(124,92,255,0.25), transparent 70%);
-  animation: inkPulse 6s ease-in-out infinite;
-}
-@media (max-width: 880px) { .v1-hero-art { height: 480px; } }
-
-/* Section heading */
-.v1-section-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 60px; gap: 40px; flex-wrap: wrap; }
-.v1-section-head h2 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: clamp(40px, 5vw, 72px); line-height: 0.98; letter-spacing: -0.015em;
-  margin: 0; max-width: 700px;
-}
-.v1-section-head .desc { color: var(--text-dim); max-width: 360px; font-size: 15px; }
-
-/* For whom */
-.v1-for { border-bottom: 1px solid var(--border); }
-.v1-for-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-@media (max-width: 880px) { .v1-for-grid { grid-template-columns: 1fr; } }
-.v1-for-card {
-  padding: 32px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--surface);
-  transition: border-color 200ms ease, transform 200ms ease;
-}
-.v1-for-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
-.v1-for-card .badge {
-  display: inline-block; padding: 4px 10px; border-radius: 999px;
-  background: var(--accent-soft); color: var(--accent);
-  font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600;
-  margin-bottom: 24px;
-}
-.v1-for-card h3 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 30px; line-height: 1.05; margin: 0 0 12px;
-}
-.v1-for-card p { color: var(--text-dim); font-size: 14px; margin: 0 0 18px; }
-.v1-for-card ul { padding: 0; margin: 0; list-style: none; display: grid; gap: 8px; }
-.v1-for-card li { font-size: 13px; color: var(--text-dim); display: flex; gap: 10px; align-items: flex-start; }
-.v1-for-card li::before { content: '\00B7'; color: var(--accent); font-size: 22px; line-height: 0.5; }
-
-/* How it works */
-.v1-how { border-bottom: 1px solid var(--border); }
-.v1-how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--border); }
-@media (max-width: 880px) { .v1-how-grid { grid-template-columns: 1fr; } }
-.v1-how-step {
-  padding: 36px 24px 36px 0; border-right: 1px solid var(--border);
-  position: relative;
-}
-.v1-how-step:last-child { border-right: 0; padding-right: 0; }
-@media (max-width: 880px) { .v1-how-step { border-right: 0; border-bottom: 1px solid var(--border); padding: 28px 0; } .v1-how-step:last-child { border-bottom: 0; } }
-.v1-how-step .num {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 56px; line-height: 1; color: var(--accent);
-  margin-bottom: 14px;
-}
-.v1-how-step h4 { font-size: 17px; font-weight: 600; margin: 0 0 10px; }
-.v1-how-step p { color: var(--text-dim); font-size: 13.5px; margin: 0; line-height: 1.55; }
-
-/* Features grid */
-.v1-features { border-bottom: 1px solid var(--border); }
-.v1-features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; }
-@media (max-width: 880px) { .v1-features-grid { grid-template-columns: 1fr; } }
-.v1-feat { padding: 28px; background: var(--bg); transition: background 200ms ease; }
-.v1-feat:hover { background: var(--surface); }
-.v1-feat .icon-wrap {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: var(--accent-soft); color: var(--accent);
-  display: grid; place-items: center; margin-bottom: 18px;
-}
-.v1-feat h4 { font-size: 16px; font-weight: 600; margin: 0 0 8px; }
-.v1-feat p { color: var(--text-dim); font-size: 13px; margin: 0; line-height: 1.55; }
-
-/* Pricing */
-.v1-pricing { border-bottom: 1px solid var(--border); }
-.v1-pricing-single { max-width: 820px; margin: 0 auto; }
-.v1-plan {
-  padding: 36px 28px;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  background: var(--surface);
-  display: flex; flex-direction: column;
-}
-.v1-plan.featured { border-color: var(--accent); position: relative; box-shadow: 0 0 0 1px var(--accent), 0 30px 60px rgba(124,92,255,0.12); }
-.v1-pricing-single .v1-plan.featured::before { display: none; }
-.v1-plan h4 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 28px; margin: 0 0 6px;
-}
-.v1-plan .tag { color: var(--text-dim); font-size: 13px; margin-bottom: 24px; }
-.v1-plan .price {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 56px; line-height: 1; margin-bottom: 4px; letter-spacing: -0.015em;
-}
-.v1-plan .price small { font-family: var(--body); font-style: normal; font-size: 13px; color: var(--text-mute); font-weight: 500; }
-.v1-plan .meta { font-size: 12px; color: var(--text-mute); margin-bottom: 22px; }
-.v1-plan ul { padding: 0; margin: 0 0 28px; list-style: none; display: grid; gap: 10px; flex: 1; }
-.v1-plan li { font-size: 13.5px; color: var(--text-dim); display: flex; gap: 10px; }
-.v1-plan li::before { content: '\2713'; color: var(--good); font-size: 13px; }
-.v1-plan .btn { width: 100%; justify-content: center; }
-
-.v1-plan-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--border); gap: 24px; flex-wrap: wrap; }
-.v1-plan-price-block { text-align: right; }
-.v1-plan-price-block .price { font-size: 36px; margin-bottom: 2px; }
-@media (max-width: 600px) { .v1-plan-header { flex-direction: column; } .v1-plan-price-block { text-align: left; } }
-
-.v1-plan-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; margin-bottom: 28px; }
-.v1-plan-features ul { padding: 0; margin: 0; list-style: none; display: grid; gap: 10px; }
-.v1-plan-features li { font-size: 13.5px; color: var(--text-dim); display: flex; gap: 10px; }
-.v1-plan-features li::before { content: '\2713'; color: var(--good); font-size: 13px; }
-@media (max-width: 600px) { .v1-plan-features { grid-template-columns: 1fr; gap: 10px; } }
-
-.v1-plan-cta-row { display: flex; align-items: center; gap: 20px; padding-top: 24px; border-top: 1px solid var(--border); flex-wrap: wrap; }
-.v1-plan-cta-row .btn { width: auto; flex-shrink: 0; }
-.v1-plan-note { font-size: 13px; color: var(--text-mute); }
-
-/* WhatsApp FAB */
-.wa-fab {
-  position: fixed; bottom: 24px; right: 24px; z-index: 100;
-  width: 56px; height: 56px; border-radius: 50%;
-  background: #25D366;
-  display: grid; place-items: center;
-  box-shadow: 0 4px 14px rgba(37,211,102,0.4);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-}
-.wa-fab:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
-
-/* Demo link */
-.v1-demo-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  margin-top: 16px; padding: 10px 18px;
-  border: 1px solid var(--border-hi); border-radius: 12px;
-  font-size: 13px; color: var(--text-dim);
-  transition: border-color 160ms ease, color 160ms ease;
-}
-.v1-demo-link:hover { border-color: var(--accent); color: var(--text); }
-.v1-demo-link .arrow { color: var(--accent); }
-
-/* About */
-.v1-about { border-bottom: 1px solid var(--border); }
-.v1-about-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
-@media (max-width: 880px) { .v1-about-grid { grid-template-columns: 1fr; } }
-.v1-portrait {
-  aspect-ratio: 4/5; border-radius: 22px;
-  background:
-    radial-gradient(80% 80% at 30% 20%, rgba(124,92,255,0.4), transparent 60%),
-    linear-gradient(135deg, #2A1F4A 0%, #0E0A1F 100%);
-  border: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
-  display: grid; place-items: center;
-}
-.v1-portrait::after {
-  content: ''; position: absolute; inset: 0;
-  background:
-    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.5), transparent 50%),
-    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.4), transparent 50%),
-    radial-gradient(1.5px 1.5px at 60% 80%, rgba(255,255,255,0.3), transparent 50%),
-    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.5), transparent 50%);
-}
-.v1-portrait .initial {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 200px; color: rgba(255,255,255,0.95);
-  position: relative; z-index: 2;
-  line-height: 1;
-}
-.v1-about h3 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: clamp(36px, 4vw, 56px); line-height: 1.0; margin: 0 0 24px;
-}
-.v1-about p { color: var(--text-dim); font-size: 16px; margin: 0 0 18px; line-height: 1.65; }
-.v1-about .signature {
-  display: flex; align-items: center; gap: 14px; margin-top: 32px;
-  padding-top: 24px; border-top: 1px solid var(--border);
-}
-.v1-about .signature .role { font-size: 13px; color: var(--text-mute); }
-.v1-about .signature strong { display: block; color: var(--text); font-size: 15px; font-weight: 500; }
-
-/* CTA band + waitlist form */
-.v1-cta-band {
-  padding: 110px 0;
-  text-align: center;
-  position: relative; overflow: hidden;
-  border-bottom: 1px solid var(--border);
-}
-.v1-cta-band::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(800px 400px at 50% 100%, rgba(124,92,255,0.22), transparent 70%);
-}
-.v1-cta-band > * { position: relative; }
-.v1-cta-band h2 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: clamp(48px, 7vw, 96px); line-height: 0.95; margin: 12px 0 24px;
-}
-.v1-cta-band p { color: var(--text-dim); max-width: 540px; margin: 0 auto 36px; font-size: 17px; }
-
-.waitlist-form {
-  display: flex; flex-direction: column; gap: 12px;
-  max-width: 420px; margin: 0 auto;
-  text-align: left;
-}
-.waitlist-input {
-  padding: 14px 20px;
-  border-radius: 14px;
-  border: 1px solid var(--border-hi);
-  background: rgba(255,255,255,0.04);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 14px;
-  outline: none;
-  transition: border-color 160ms ease;
-}
-.waitlist-input:focus { border-color: var(--accent); }
-.waitlist-input::placeholder { color: var(--text-mute); }
-.waitlist-submit {
-  margin-top: 4px;
-  padding: 16px 28px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  font-size: 15px;
-  border: none;
-  cursor: pointer;
-  transition: background 160ms ease, transform 120ms ease;
-}
-.waitlist-submit:hover { background: #8d6fff; transform: translateY(-1px); }
-.waitlist-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.waitlist-msg {
-  text-align: center;
-  font-size: 13px;
-  min-height: 20px;
-  margin-top: 4px;
-}
-.waitlist-msg--ok { color: var(--good); }
-.waitlist-msg--err { color: var(--bad); }
-
-/* Footer */
-.v1-footer { padding: 60px 0 40px; }
-.v1-footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
-@media (max-width: 720px) { .v1-footer-grid { grid-template-columns: 1fr; gap: 28px; } }
-.v1-footer h5 { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-mute); margin: 0 0 16px; font-weight: 600; }
-.v1-footer-links { display: grid; gap: 10px; font-size: 13px; color: var(--text-dim); }
-.v1-footer-links a:hover { color: var(--text); }
-.v1-footer-bottom {
-  display: flex; justify-content: space-between; padding-top: 24px;
-  font-size: 12px; color: var(--text-mute);
-  flex-wrap: wrap; gap: 16px;
-}
-
-/* Mini phone preview SVG inside hero */
-.mini-status { display: flex; justify-content: space-between; padding: 14px 24px 8px; font-size: 11px; }
-.mini-cover {
-  height: 38%; background: linear-gradient(135deg, var(--cover-from), var(--cover-to));
-  position: relative; overflow: hidden;
-}
-.mini-cover::after {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(60% 80% at 30% 20%, rgba(124,92,255,0.3), transparent 70%);
-}
-.mini-cover .gly {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 64px; color: rgba(255,255,255,0.9);
-}
-.mini-body { padding: 18px 16px; }
-.mini-body .eyebrow-tag { font-size: 9px; color: var(--text-mute); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 6px; }
-.mini-body .title {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 22px; line-height: 1.08; margin-bottom: 14px;
-}
-.mini-row {
-  padding: 10px 12px; margin-bottom: 6px;
-  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-  display: flex; justify-content: space-between; align-items: center;
-  font-size: 11px;
-}
-.mini-row .price { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 15px; }
-.mini-row.hi { border-color: var(--accent); background: var(--accent-soft); }
-.mini-cta {
-  position: absolute; bottom: 16px; left: 16px; right: 16px;
-  background: var(--accent); color: #fff; text-align: center;
-  padding: 12px; border-radius: 999px; font-size: 12px; font-weight: 600;
-}
-
-/* Phone variant 2 — confirmation */
-.mini-confirm { padding: 60px 16px 16px; text-align: center; }
-.mini-confirm .checkbubble {
-  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 18px;
-  background: var(--good); display: grid; place-items: center;
-  box-shadow: 0 0 0 8px rgba(91,216,154,0.15);
-}
-.mini-confirm h5 {
-  font-family: var(--display); font-style: italic; font-weight: 500;
-  font-size: 22px; margin: 0 0 6px;
-}
-.mini-confirm p { font-size: 11px; color: var(--text-dim); margin: 0 0 16px; }
-.mini-confirm .code {
-  display: inline-block; padding: 6px 12px;
-  border: 1px dashed var(--border-hi); border-radius: 8px;
-  font-family: var(--mono); font-size: 12px; color: var(--text);
-  margin-bottom: 12px;
-}
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #08070c; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #a894ff; text-decoration: none; }
+  a:hover { color: #c9bcff; }
+  h1, h2, h3, h4, p, ul, ol, li, figure, blockquote { margin: 0; padding: 0; }
+  ul, ol { list-style: none; }
+  img { max-width: 100%; height: auto; display: block; }
+  summary { cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  details[open] .plus { transform: rotate(45deg); }
+  body { color: #f5f3fa; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 17px; line-height: 1.6; overflow-x: hidden; }
+  .lang-toggle { display: inline-flex; gap: 0; padding: 3px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; background: rgba(255,255,255,.03); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+  .lang-toggle button { padding: 6px 12px; border-radius: 999px; color: #8c8699; background: transparent; border: 0; cursor: pointer; font: inherit; letter-spacing: inherit; transition: background 160ms ease, color 160ms ease; }
+  .lang-toggle button.active { background: #f5f3fa; color: #08070c; }
+  a[href="#precio"].btn-hidden { display: none !important; }
+  @media (max-width: 1000px) {
+    main section, header > div, footer > div { padding-left: 20px !important; padding-right: 20px !important; }
+    main section { padding-top: 76px !important; }
+    main [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    main [style*="repeat(5"], main [style*="repeat(4"], main [style*="repeat(3"] { grid-template-columns: 1fr 1fr !important; }
+    footer [style*="grid-template-columns"] { grid-template-columns: 1fr 1fr !important; }
+    main [style*="top: 110px"] { position: static !important; }
+    h1 { font-size: 40px !important; }
+    h2 { font-size: 30px !important; }
+    main [style*="padding: 56px"] { padding: 32px !important; }
+    main [style*="padding: 44px"] { padding: 30px !important; }
+    main [style*="padding: 76px 48px"] { padding: 48px 26px !important; }
+    header nav { display: none !important; }
+    main section[aria-label="Plataformas y capacidades"] ul { grid-template-columns: 1fr !important; }
+    main [style*="rotate(-4deg)"], main [style*="rotate(3deg)"] { transform: none !important; }
+    main [style*="justify-content: center"][style*="flex-end"] { max-width: 380px; margin: 0 auto; }
+  }
+  @media (max-width: 620px) {
+    main [style*="repeat(5"], main [style*="repeat(4"], main [style*="repeat(3"], main [style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
+    h1 { font-size: 34px !important; }
+    h2 { font-size: 27px !important; }
+    main a[style*="border-radius: 999px"][style*="font-size: 17px"], main a[style*="border-radius: 999px"][style*="font-size: 18px"] { width: 100%; text-align: center; justify-content: center; }
+  }
 </style>
 </head>
 <body>
+<div style="background: #08070c; color: #f5f3fa;">
 
-<!-- NAV -->
-<nav class="v1-nav">
-  <div class="v1-brand">
-    <div class="glyph">I</div>
-    <strong>InkSlate</strong>
-  </div>
-  <div class="v1-nav-links">
-    <a href="#how" data-en="How it works" data-es="Cómo funciona">How it works</a>
-    <a href="#features" data-en="Features" data-es="Funciones">Features</a>
-    <a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-    <a href="#about" data-en="About" data-es="Sobre">About</a>
-  </div>
-  <div class="v1-nav-right">
-    <div class="lang-toggle">
-      <button data-lang="en">EN</button>
-      <button data-lang="es">ES</button>
-    </div>
-    <a href="#waitlist" class="btn btn-ghost" data-en="Start free" data-es="Empieza gratis">Start free</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="v1-hero">
-  <div class="container">
-    <div class="v1-hero-grid">
-      <div>
-        <div class="eyebrow" data-en="Issue 01 &middot; For independent studios" data-es="Edición 01 &middot; Para estudios independientes">Issue 01 &middot; For independent studios</div>
-        <h1>
-          <span data-en="Booking that respects" data-es="Reservas que respetan">Booking that respects</span><br/>
-          <em class="accent" data-en="the craft." data-es="el oficio.">the craft.</em>
-        </h1>
-        <p class="lede" data-en="A link-based booking platform for tattoo studios, barbershops and beauty salons. No app downloads, no scheduling chaos — just a beautiful page your clients actually use."
-           data-es="Una plataforma de reservas basada en un link, para estudios de tatuaje, barberías y salones. Sin apps que descargar, sin caos de agenda — solo una página hermosa que tus clientes sí usan.">
-          A link-based booking platform for tattoo studios, barbershops and beauty salons. No app downloads, no scheduling chaos — just a beautiful page your clients actually use.
-        </p>
-        <div class="v1-hero-cta">
-          <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empieza gratis &rarr;">Start free &rarr;</a>
-          <a href="#how" class="btn btn-ghost" data-en="How it works" data-es="Cómo funciona">How it works</a>
+  <header style="position: sticky; top: 0; z-index: 40; background: rgba(8,7,12,.86); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.07);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 16px 28px; display: flex; align-items: center; gap: 28px;">
+      <a href="/" style="display: flex; align-items: center; gap: 11px; color: #f5f3fa;">
+        <span style="width: 32px; height: 32px; border-radius: 9px; background: linear-gradient(160deg, #7c5cff, #4c2fd6); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: #fff;">I</span>
+        <span style="font-weight: 700; font-size: 19px; letter-spacing: -0.02em;">InkSlate</span>
+      </a>
+      <nav aria-label="Principal" style="margin-left: auto; display: flex; align-items: center; gap: 26px; font-size: 15px; color: #b6b1c6;">
+        <a href="#como-funciona" style="color: #b6b1c6;" data-en="How it works" data-es="Cómo funciona">How it works</a>
+        <a href="#producto" style="color: #b6b1c6;" data-en="Product" data-es="Producto">Product</a>
+        <a href="#negocios" style="color: #b6b1c6;" data-en="For your business" data-es="Para tu negocio">For your business</a>
+        <a href="#precio" style="color: #b6b1c6;" data-en="Pricing" data-es="Precio">Pricing</a>
+        <a href="#preguntas" style="color: #b6b1c6;" data-en="FAQ" data-es="Preguntas">FAQ</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <div class="lang-toggle">
+          <button data-lang="en">EN</button>
+          <button data-lang="es">ES</button>
         </div>
-        <div class="v1-hero-meta">
-          <div>
-            <strong data-en="No-account booking" data-es="Reserva sin cuenta">No-account booking</strong>
-            <span data-en="Clients book in 60 seconds" data-es="Reservan en 60 segundos">Clients book in 60 seconds</span>
-          </div>
-          <div>
-            <strong data-en="SINPE-ready" data-es="Listo para SINPE">SINPE-ready</strong>
-            <span data-en="Built for Costa Rica first" data-es="Pensado para Costa Rica primero">Built for Costa Rica first</span>
-          </div>
-        </div>
-      </div>
-      <div class="v1-hero-art">
-        <div class="glow"></div>
-        <!-- Back phone -->
-        <div class="phone phone-back">
-          <div class="phone-screen">
-            <div class="phone-status mono"><span>9:41</span><span>&bull;&bull;&bull;</span></div>
-            <div class="mini-status"></div>
-            <div class="mini-cover">
-              <div class="gly">I</div>
-            </div>
-            <div class="mini-body">
-              <div class="eyebrow-tag" data-en="Tattoo studio" data-es="Estudio de tatuaje">Tattoo studio</div>
-              <div class="title">Hollow Hand <em>Tattoo</em></div>
-              <div class="mini-row">
-                <span data-en="Fine line &middot; small" data-es="Línea fina &middot; pequeño">Fine line &middot; small</span>
-                <span class="price">&cent;60K</span>
-              </div>
-              <div class="mini-row hi">
-                <span data-en="Blackwork &middot; medium" data-es="Blackwork &middot; mediano">Blackwork &middot; medium</span>
-                <span class="price">&cent;132K</span>
-              </div>
-              <div class="mini-row">
-                <span data-en="Custom design" data-es="Diseño personalizado">Custom design</span>
-                <span class="price">&cent;192K</span>
-              </div>
-            </div>
-            <div class="mini-cta" data-en="Book a Tattoo &rarr;" data-es="Agenda un Tatuaje &rarr;">Book a Tattoo &rarr;</div>
-          </div>
-        </div>
-        <!-- Front phone -->
-        <div class="phone phone-front">
-          <div class="phone-screen">
-            <div class="phone-status mono"><span>9:41</span><span>&bull;&bull;&bull;</span></div>
-            <div class="mini-confirm">
-              <div class="checkbubble">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <div class="eyebrow-tag" data-en="Confirmation" data-es="Confirmación">Confirmation</div>
-              <h5 data-en="You're booked." data-es="Reserva hecha!">You're booked.</h5>
-              <p data-en="Save the link to come back later." data-es="Guarda el link para volver luego.">Save the link to come back later.</p>
-              <div class="code">INK-7Q4F2</div>
-              <div style="margin-top: 12px; padding: 10px 14px; border: 1px solid var(--border-hi); border-radius: 12px; font-size: 11px; color: var(--text-dim); text-align:left;">
-                <div style="font-size: 9px; color: var(--text-mute); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 4px;" data-en="When" data-es="Cuando">When</div>
-                <div data-en="Wed &middot; 14:00 &middot; with Mara" data-es="Mié &middot; 14:00 &middot; con Mara">Wed &middot; 14:00 &middot; with Mara</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <a href="#precio" style="background: #7c5cff; color: #fff; font-weight: 600; font-size: 15px; padding: 11px 20px; border-radius: 999px;" data-en="Start free" data-es="Empezá gratis">Start free</a>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- FOR WHOM -->
-<section class="v1-for section" id="for">
-  <div class="container">
-    <div class="v1-section-head">
-      <div>
-        <div class="eyebrow" data-en="01 &middot; For whom" data-es="01 &middot; Para quién">01 &middot; For whom</div>
-        <h2 data-en="Built for studios that take their craft seriously." data-es="Hecho para estudios que se toman el oficio en serio.">Built for studios that take their craft seriously.</h2>
-      </div>
-      <div class="desc" data-en="One platform, three disciplines. The booking flow is the same; the details are tuned to how each one actually works." data-es="Una plataforma, tres disciplinas. El flujo es el mismo; los detalles se ajustan a cómo trabaja cada uno.">
-        One platform, three disciplines. The booking flow is the same; the details are tuned to how each one actually works.
-      </div>
-    </div>
-    <div class="v1-for-grid">
-      <div class="v1-for-card">
-        <div class="badge" data-en="Tattoo studios" data-es="Estudios de tatuaje">Tattoo studios</div>
-        <h3 data-en="Sessions, briefs, deposits." data-es="Sesiones, briefs, depósitos.">Sessions, briefs, deposits.</h3>
-        <p data-en="Move clients from DM chaos to a single link. Collect references, approve a deposit, lock the slot." data-es="Saca a los clientes del caos de los DMs a un único link. Recibe referencias, aprobá el depósito, asegurá el espacio.">
-          Move clients from DM chaos to a single link. Collect references, approve a deposit, lock the slot.
-        </p>
-        <ul>
-          <li data-en="SINPE receipt review" data-es="Revisión de comprobante SINPE">SINPE receipt review</li>
-          <li data-en="Reference upload + artist reply" data-es="Subida de referencias + respuesta del artista">Reference upload + artist reply</li>
-          <li data-en="Per-artist availability" data-es="Disponibilidad por artista">Per-artist availability</li>
-        </ul>
-      </div>
-      <div class="v1-for-card">
-        <div class="badge" data-en="Barbershops" data-es="Barberías">Barbershops</div>
-        <h3 data-en="High-volume, on the dot." data-es="Alto volumen, puntuales.">High-volume, on the dot.</h3>
-        <p data-en="A barbershop runs on speed. The day view shows you the next 12 hours; clients pick a slot and walk in." data-es="Una barbería corre por velocidad. La vista de hoy muestra las próximas 12 horas; los clientes eligen un slot y entran.">
-          A barbershop runs on speed. The day view shows you the next 12 hours; clients pick a slot and walk in.
-        </p>
-        <ul>
-          <li data-en="3-tap booking" data-es="Reserva en 3 toques">3-tap booking</li>
-          <li data-en="No-deposit option" data-es="Opción sin depósito">No-deposit option</li>
-          <li data-en="Walk-in friendly slots" data-es="Slots amigables a walk-ins">Walk-in friendly slots</li>
-        </ul>
-      </div>
-      <div class="v1-for-card">
-        <div class="badge" data-en="Beauty salons" data-es="Salones de belleza">Beauty salons</div>
-        <h3 data-en="Long sessions, repeat clients." data-es="Sesiones largas, clientes habituales.">Long sessions, repeat clients.</h3>
-        <p data-en="Color, highlights, brows — multi-step services with buffers between bookings, and a memory for who's been before." data-es="Color, mechas, cejas — servicios de varios pasos con buffers entre citas, y memoria de quién ya vino.">
-          Color, highlights, brows — multi-step services with buffers between bookings, and a memory for who's been before.
-        </p>
-        <ul>
-          <li data-en="Service buffers + max-per-day" data-es="Buffers + máximo por día">Service buffers + max-per-day</li>
-          <li data-en="Returning client recognition" data-es="Reconocimiento de clientes habituales">Returning client recognition</li>
-          <li data-en="Multi-language client UI" data-es="Interfaz multi-idioma">Multi-language client UI</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+  <main>
 
-<!-- HOW IT WORKS -->
-<section class="v1-how section" id="how">
-  <div class="container">
-    <div class="v1-section-head">
-      <div>
-        <div class="eyebrow" data-en="02 &middot; How it works" data-es="02 &middot; Como funciona">02 &middot; How it works</div>
-        <h2 data-en="From link in bio to confirmed slot, in four steps." data-es="Del link en bio al slot confirmado, en cuatro pasos.">From link in bio to confirmed slot, in four steps.</h2>
-      </div>
-    </div>
-    <div class="v1-how-grid">
-      <div class="v1-how-step">
-        <div class="num">01</div>
-        <h4 data-en="Drop your link" data-es="Poné tu link">Drop your link</h4>
-        <p data-en="One URL goes in your Instagram bio. Clients land on your studio page — no app, no signup, no friction." data-es="Una URL va en tu bio de Instagram. Los clientes caen en tu página — sin app, sin signup, sin fricción.">One URL goes in your Instagram bio. Clients land on your studio page — no app, no signup, no friction.</p>
-      </div>
-      <div class="v1-how-step">
-        <div class="num">02</div>
-        <h4 data-en="They pick &amp; request" data-es="Ellos eligen y piden">They pick &amp; request</h4>
-        <p data-en="Service, artist, time, deposit — all in one flow. The request hits your dashboard with status &ldquo;pending.&rdquo;" data-es="Servicio, artista, hora, depósito — todo en un flujo. La solicitud llega a tu panel como &ldquo;pendiente&rdquo;.">Service, artist, time, deposit — all in one flow. The request hits your dashboard with status &ldquo;pending.&rdquo;</p>
-      </div>
-      <div class="v1-how-step">
-        <div class="num">03</div>
-        <h4 data-en="You review &amp; confirm" data-es="Vos revisás y confirmás">You review &amp; confirm</h4>
-        <p data-en="Approve the deposit receipt with one tap. The booking flips to confirmed and the client gets their code." data-es="Aprueba el comprobante con un toque. La reserva se confirma y el cliente recibe su código.">Approve the deposit receipt with one tap. The booking flips to confirmed and the client gets their code.</p>
-      </div>
-      <div class="v1-how-step">
-        <div class="num">04</div>
-        <h4 data-en="Show up &amp; work" data-es="Aparezcan y a trabajar">Show up &amp; work</h4>
-        <p data-en="Both sides know the brief, the time, and the price. No DMs, no missed calls, no awkward back-and-forth." data-es="Ambos lados saben el brief, la hora y el precio. Sin DMs, sin llamadas perdidas, sin idas y vueltas.">Both sides know the brief, the time, and the price. No DMs, no missed calls, no awkward back-and-forth.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section class="v1-features section" id="features">
-  <div class="container">
-    <div class="v1-section-head">
-      <div>
-        <div class="eyebrow" data-en="03 &middot; Features" data-es="03 &middot; Funciones">03 &middot; Features</div>
-        <h2 data-en="Every detail, considered." data-es="Cada detalle, considerado.">Every detail, considered.</h2>
-      </div>
-      <div class="desc" data-en="Not a bloated CRM. Just the things a studio actually needs to run a calm, professional booking flow." data-es="No es un CRM inflado. Solo lo que un estudio realmente necesita para correr una agenda tranquila y profesional.">
-        Not a bloated CRM. Just the things a studio actually needs to run a calm, professional booking flow.
-      </div>
-    </div>
-    <div class="v1-features-grid">
-      <div class="v1-feat">
-        <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg></div>
-        <h4 data-en="Day view + timeline" data-es="Vista de hoy + timeline">Day view + timeline</h4>
-        <p data-en="Today's bookings as a list, or as a multi-artist vertical timeline. Switch in a tap." data-es="Las reservas de hoy como lista, o como timeline vertical por artista. Cambias con un toque.">Today's bookings as a list, or as a multi-artist vertical timeline. Switch in a tap.</p>
-      </div>
-      <div class="v1-feat">
-        <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3v4a1 1 0 0 0 1 1h4M5 3h9l5 5v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M9 13l2 2 4-4"/></svg></div>
-        <h4 data-en="Deposit review queue" data-es="Cola de revisión de depósitos">Deposit review queue</h4>
-        <p data-en="Receipts arrive in a single queue. Approve or reject with a note — clients see your reason instantly." data-es="Los comprobantes llegan a una sola cola. Aprueba o rechaza con una nota — los clientes ven tu razón al instante.">Receipts arrive in a single queue. Approve or reject with a note — clients see your reason instantly.</p>
-      </div>
-      <div class="v1-feat">
-        <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <h4 data-en="Per-artist availability" data-es="Disponibilidad por artista">Per-artist availability</h4>
-        <p data-en="Each artist sets their hours, slot length, buffer, and max bookings. The studio composes the calendar." data-es="Cada artista define sus horas, duración de slot, buffer y máximo de reservas. El estudio compone la agenda.">Each artist sets their hours, slot length, buffer, and max bookings. The studio composes the calendar.</p>
-      </div>
-      <div class="v1-feat">
-        <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M8 14h3"/></svg></div>
-        <h4 data-en="Brief + reply" data-es="Brief + respuesta">Brief + reply</h4>
-        <p data-en="Clients send up to 2 references and a note. Artists reply with sketches, message, and a lock-in toggle." data-es="Los clientes envían hasta 2 referencias y una nota. Los artistas responden con sketches y mensaje.">Clients send up to 2 references and a note. Artists reply with sketches, message, and a lock-in toggle.</p>
-      </div>
-      <div class="v1-feat">
-        <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 1 1-3.4-6.8L21 3v6h-6"/></svg></div>
-        <h4 data-en="Google Calendar sync" data-es="Sincronía con Google Calendar">Google Calendar sync</h4>
-        <p data-en="Two-way sync per artist. External events block booking slots; new bookings push to the artist's calendar." data-es="Sincronía de doble vía por artista. Eventos externos bloquean slots; nuevas reservas se envían al calendario.">Two-way sync per artist. External events block booking slots; new bookings push to the artist's calendar.</p>
-      </div>
-      <div class="v1-feat">
-        <div class="icon-wrap"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h18l-2 14H5L3 5zM8 9v6M12 9v6M16 9v6"/></svg></div>
-        <h4 data-en="No-account clients" data-es="Clientes sin cuenta">No-account clients</h4>
-        <p data-en="Bookings are saved to the device. A magic email link lets clients pick up where they left off on any phone." data-es="Las reservas se guardan en el dispositivo. Un magic link por email les permite continuar en cualquier teléfono.">Bookings are saved to the device. A magic email link lets clients pick up where they left off on any phone.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="v1-pricing section" id="pricing">
-  <div class="container">
-    <div class="v1-section-head">
-      <div>
-        <div class="eyebrow" data-en="04 &middot; Pricing" data-es="04 &middot; Precios">04 &middot; Pricing</div>
-        <h2 data-en="Everything included. Try it free." data-es="Todo incluido. Probalo gratis.">Everything included. Try it free.</h2>
-      </div>
-      <div class="desc" data-en="No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later." data-es="Sin comisiones por reserva. Sin niveles ocultos. Una plataforma con todo lo que tu estudio necesita — empezá hoy, pagá después.">
-        No per-booking fees. No hidden tiers. One platform with everything your studio needs — start today, pay later.
-      </div>
-    </div>
-    <div class="v1-pricing-single">
-      <div class="v1-plan featured">
-        <div class="v1-plan-header">
-          <div>
-            <h4 data-en="InkSlate" data-es="InkSlate">InkSlate</h4>
-            <div class="tag" data-en="For tattoo studios, barbershops &amp; salons" data-es="Para estudios de tatuaje, barberías y salones">For tattoo studios, barbershops &amp; salons</div>
-          </div>
-          <div class="v1-plan-price-block">
-            <div class="price" data-en="Free to start" data-es="Gratis para empezar">Free to start</div>
-            <div class="meta" data-en="Early-adopter pricing when you're ready" data-es="Precio early-adopter cuando estés listo">Early-adopter pricing when you're ready</div>
-          </div>
+    <section style="max-width: 1240px; margin: 0 auto; padding: 84px 28px 0; display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 26px; min-width: 0;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: #9b8dd6; display: flex; align-items: center; gap: 10px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #8fbfa4;"></span><span data-en="Booking system · Costa Rica" data-es="Sistema de reservas · Costa Rica">Booking system · Costa Rica</span></p>
+        <h1 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 62px; line-height: 1.04; letter-spacing: -0.025em; text-wrap: pretty; margin: 0;" data-en-html="Online booking for tattoo, barbershop and beauty studios <span style=&quot;font-style: italic; color: #8f74ff;&quot;>in Costa Rica.</span>" data-es-html="Reservas online para estudios de tatuaje, barbería y belleza <span style=&quot;font-style: italic; color: #8f74ff;&quot;>en Costa Rica.</span>">Online booking for tattoo, barbershop and beauty studios <span style="font-style: italic; color: #8f74ff;">in Costa Rica.</span></h1>
+        <p style="font-size: 19px; line-height: 1.62; color: #c2bdd0; max-width: 33em; text-wrap: pretty;" data-en="Your client books from their phone with no account and nothing to install. The slot is held instantly, the SINPE deposit is approved with one tap, and you see the whole calendar in one place." data-es="Tu cliente reserva desde el celular sin crear cuenta y sin instalar nada. El horario queda apartado al instante, el depósito por SINPE se aprueba con un toque, y vos ves toda la agenda en un solo lugar.">Your client books from their phone with no account and nothing to install. The slot is held instantly, the SINPE deposit is approved with one tap, and you see the whole calendar in one place.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+          <a href="#precio" style="background: #7c5cff; color: #fff; font-weight: 600; font-size: 17px; padding: 16px 30px; border-radius: 999px; display: inline-flex; align-items: center; gap: 10px;"><span data-en="Start your free month" data-es="Empezá gratis un mes">Start your free month</span> <span aria-hidden="true">→</span></a>
+          <a href="#como-funciona" style="border: 1px solid rgba(255,255,255,.18); color: #e7e3f2; font-weight: 500; font-size: 17px; padding: 15px 26px; border-radius: 999px;" data-en="See how it works" data-es="Ver cómo funciona">See how it works</a>
         </div>
-        <div class="v1-plan-features">
-          <ul>
-            <li data-en="Booking page + full booking flow" data-es="Página de reserva + flujo completo">Booking page + full booking flow</li>
-            <li data-en="Unlimited bookings" data-es="Reservas ilimitadas">Unlimited bookings</li>
-            <li data-en="Per-artist availability &amp; schedule" data-es="Disponibilidad y agenda por artista">Per-artist availability &amp; schedule</li>
-            <li data-en="SINPE deposit review" data-es="Revisión de depósitos SINPE">SINPE deposit review</li>
-          </ul>
-          <ul>
-            <li data-en="Brief + artist reply" data-es="Brief + respuesta del artista">Brief + artist reply</li>
-            <li data-en="Google Calendar sync" data-es="Sincronía con Google Calendar">Google Calendar sync</li>
-            <li data-en="WhatsApp shortcuts" data-es="Atajos a WhatsApp">WhatsApp shortcuts</li>
-            <li data-en="Day view + visual timeline" data-es="Vista de hoy + timeline visual">Day view + visual timeline</li>
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: .04em; color: #837d95;" data-en="No card needed · Then ₡10,000/month · No per-booking fee" data-es="Sin tarjeta · Después ₡10.000 al mes · Sin comisión por reserva">No card needed · Then ₡10,000/month · No per-booking fee</p>
+        <div style="border-top: 1px solid rgba(255,255,255,.08); padding-top: 22px; display: flex; flex-direction: column; gap: 12px;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="Built for" data-es="Hecho para">Built for</p>
+          <ul style="display: flex; flex-wrap: wrap; gap: 9px;">
+            <li><a href="/para-tatuadores" style="display: inline-block; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 8px 16px; font-size: 14.5px; color: #ddd8ea;" data-en="Tattoo studios" data-es="Estudios de tatuaje">Tattoo studios</a></li>
+            <li><a href="/para-barberias" style="display: inline-block; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 8px 16px; font-size: 14.5px; color: #ddd8ea;" data-en="Barbershops" data-es="Barberías">Barbershops</a></li>
+            <li><a href="/para-salones-de-belleza" style="display: inline-block; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 8px 16px; font-size: 14.5px; color: #ddd8ea;" data-en="Beauty salons" data-es="Salones de belleza">Beauty salons</a></li>
+            <li><a href="/para-nail-artists" style="display: inline-block; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; padding: 8px 16px; font-size: 14.5px; color: #ddd8ea;" data-en="Nail artists" data-es="Nail artists">Nail artists</a></li>
           </ul>
         </div>
-        <div class="v1-plan-cta-row">
-          <a href="#waitlist" class="btn btn-primary" data-en="Start free &rarr;" data-es="Empezá gratis &rarr;">Start free &rarr;</a>
-          <span class="v1-plan-note" data-en="We set up your studio with you — no credit card, no commitment." data-es="Configuramos tu estudio con vos — sin tarjeta, sin compromiso.">We set up your studio with you — no credit card, no commitment.</span>
-        </div>
-        <a href="https://inkslate.lat/ryutattoo" class="v1-demo-link" target="_blank" rel="noopener">
-          <span data-en="See a live demo studio" data-es="Mira un estudio demo en vivo">See a live demo studio</span>
-          <span class="arrow">&rarr;</span>
-        </a>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ABOUT -->
-<section class="v1-about section" id="about">
-  <div class="container">
-    <div class="v1-about-grid">
-      <div class="v1-portrait"><span class="initial">D</span></div>
-      <div>
-        <div class="eyebrow" data-en="05 &middot; About the maker" data-es="05 &middot; Sobre el creador">05 &middot; About the maker</div>
-        <h3 data-en="Hi, I'm Dabrin. I build the kind of software I'd want to use." data-es="Hola, soy Dabrin. Construyo software que yo mismo querría usar.">
-          Hi, I'm Dabrin. I build the kind of software I'd want to use.
-        </h3>
-        <p data-en="InkSlate started as a side project after watching a friend who runs a tattoo studio drown in DMs every week. The booking apps out there were either built for nail salons in 2014, or generic SaaS that doesn't speak the language of independent studios."
-           data-es="InkSlate empezó como un side project después de ver a un amigo que tiene un estudio de tatuaje ahogarse en DMs cada semana. Las apps de reservas que existen están hechas o para salones de uñas en 2014, o son SaaS genéricos que no hablan el idioma de los estudios independientes.">
-          InkSlate started as a side project after watching a friend who runs a tattoo studio drown in DMs every week. The booking apps out there were either built for nail salons in 2014, or generic SaaS that doesn't speak the language of independent studios.
-        </p>
-        <p data-en="So I'm building something focused: editorial design, a flow that respects everyone's time, and a price that makes sense for a single artist or a small atelier. Built in Costa Rica, from day one."
-           data-es="Así que estoy construyendo algo enfocado: diseño editorial, un flujo que respeta el tiempo de todos, y un precio que tiene sentido para un artista solo o un atelier pequeño. Hecho en Costa Rica, desde el día uno.">
-          So I'm building something focused: editorial design, a flow that respects everyone's time, and a price that makes sense for a single artist or a small atelier. Built in Costa Rica, from day one.
-        </p>
-        <div class="signature">
-          <div>
-            <strong>Dabrin Najera</strong>
-            <span class="role" data-en="Founder &middot; Designer &middot; Engineer" data-es="Fundador &middot; Diseñador &middot; Ingeniero">Founder &middot; Designer &middot; Engineer</span>
+      <div style="position: relative; min-width: 0; display: flex; justify-content: center; align-items: flex-end; padding-top: 20px;">
+        <div style="position: absolute; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(124,92,255,.28), transparent 68%); filter: blur(18px); top: 40px;"></div>
+        <img src="./assets/inkslate-calendario-disponibilidad-barberia.png" alt="InkSlate availability calendar for a barbershop, showing the free slots for the day" width="1206" height="2622" loading="eager" decoding="async" style="position: relative; width: 46%; border-radius: 26px; border: 1px solid rgba(255,255,255,.12); transform: translate(14%, 4%) rotate(-4deg); box-shadow: 0 40px 90px rgba(0,0,0,.6);" />
+        <img src="./assets/inkslate-reserva-confirmada-codigo.png" alt="InkSlate screen showing a confirmed booking with its code and the pending deposit" width="1206" height="2622" loading="eager" decoding="async" fetchpriority="high" style="position: relative; width: 52%; border-radius: 28px; border: 1px solid rgba(255,255,255,.16); transform: translate(-14%, -2%) rotate(3deg); box-shadow: 0 50px 110px rgba(0,0,0,.7);" />
+      </div>
+    </section>
+
+    <section aria-label="Plataformas y capacidades" style="max-width: 1240px; margin: 72px auto 0; padding: 0 28px;">
+      <ul style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; overflow: hidden;">
+        <li style="background: #0c0a12; padding: 22px 20px; display: flex; flex-direction: column; gap: 5px;"><span style="font-weight: 600; font-size: 15px;" data-en="iOS app" data-es="App para iOS">iOS app</span><span style="font-size: 13.5px; color: #98929f;" data-en="Published on the App Store" data-es="Publicada en el App Store">Published on the App Store</span></li>
+        <li style="background: #0c0a12; padding: 22px 20px; display: flex; flex-direction: column; gap: 5px;"><span style="font-weight: 600; font-size: 15px;" data-en="Android app" data-es="App para Android">Android app</span><span style="font-size: 13.5px; color: #98929f;" data-en="Published on Google Play" data-es="Publicada en Google Play">Published on Google Play</span></li>
+        <li style="background: #0c0a12; padding: 22px 20px; display: flex; flex-direction: column; gap: 5px;"><span style="font-weight: 600; font-size: 15px;" data-en="Your client installs nothing" data-es="Tu cliente no instala nada">Your client installs nothing</span><span style="font-size: 13.5px; color: #98929f;" data-en="Books straight from the browser" data-es="Reserva desde el navegador">Books straight from the browser</span></li>
+        <li style="background: #0c0a12; padding: 22px 20px; display: flex; flex-direction: column; gap: 5px;"><span style="font-weight: 600; font-size: 15px;" data-en="SINPE deposits" data-es="Depósitos por SINPE">SINPE deposits</span><span style="font-size: 13.5px; color: #98929f;" data-en="In colones, the way you already charge" data-es="En colones, como ya cobrás">In colones, the way you already charge</span></li>
+        <li style="background: #0c0a12; padding: 22px 20px; display: flex; flex-direction: column; gap: 5px;"><span style="font-weight: 600; font-size: 15px;" data-en="Spanish and English" data-es="Español e inglés">Spanish and English</span><span style="font-size: 13.5px; color: #98929f;" data-en="Handy in tourist areas" data-es="Útil en zonas turísticas">Handy in tourist areas</span></li>
+      </ul>
+    </section>
+
+    <section style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0;">
+      <div style="display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="01 — The problem" data-es="01 — El problema">01 — The problem</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; text-wrap: pretty;" data-en-html="Booking over WhatsApp works <span style=&quot;font-style: italic; color: #8f74ff;&quot;>until it doesn't.</span>" data-es-html="Agendar por WhatsApp funciona <span style=&quot;font-style: italic; color: #8f74ff;&quot;>hasta que deja de funcionar.</span>">Booking over WhatsApp works <span style="font-style: italic; color: #8f74ff;">until it doesn't.</span></h2>
+        </div>
+        <ul style="display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; overflow: hidden;">
+          <li style="background: #0c0a12; padding: 26px 28px; display: flex; gap: 20px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7c5cff;">01</span><div style="display: flex; flex-direction: column; gap: 6px;"><h3 style="font-size: 18px; font-weight: 600;" data-en="Six messages to close one appointment" data-es="Seis mensajes para cerrar una cita">Six messages to close one appointment</h3><p style="color: #b0aabd; font-size: 16px;" data-en="&quot;Are you free Thursday?&quot; &quot;Not at 3, but 5 works&quot; &quot;Perfect&quot; — all while someone's in the chair." data-es="«¿Tenés el jueves?» «A las 3 no, a las 5 sí» «Perfecto» — y todo eso mientras tenés a alguien en la silla.">"Are you free Thursday?" "Not at 3, but 5 works" "Perfect" — all while someone's in the chair.</p></div></li>
+          <li style="background: #0c0a12; padding: 26px 28px; display: flex; gap: 20px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7c5cff;">02</span><div style="display: flex; flex-direction: column; gap: 6px;"><h3 style="font-size: 18px; font-weight: 600;" data-en="The same slot offered twice" data-es="El mismo horario ofrecido dos veces">The same slot offered twice</h3><p style="color: #b0aabd; font-size: 16px;" data-en="Without visible availability, a double booking is a matter of time. And whoever gets bumped doesn't come back." data-es="Sin disponibilidad visible, la doble reserva es cuestión de tiempo. Y el que se queda afuera no vuelve.">Without visible availability, a double booking is a matter of time. And whoever gets bumped doesn't come back.</p></div></li>
+          <li style="background: #0c0a12; padding: 26px 28px; display: flex; gap: 20px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7c5cff;">03</span><div style="display: flex; flex-direction: column; gap: 6px;"><h3 style="font-size: 18px; font-weight: 600;" data-en="The calendar split across three places" data-es="La agenda repartida en tres lugares">The calendar split across three places</h3><p style="color: #b0aabd; font-size: 16px;" data-en="Chat, notebook and memory. No one on the team knows for sure how Saturday is looking." data-es="Chat, cuaderno y memoria. Nadie del equipo sabe con certeza cómo viene el sábado.">Chat, notebook and memory. No one on the team knows for sure how Saturday is looking.</p></div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="como-funciona" style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0; scroll-margin-top: 90px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; max-width: 40em;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="02 — How it works" data-es="02 — Cómo funciona">02 — How it works</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="Two journeys, <span style=&quot;font-style: italic; color: #8f74ff;&quot;>one calendar.</span>" data-es-html="Dos recorridos, <span style=&quot;font-style: italic; color: #8f74ff;&quot;>un solo calendario.</span>">Two journeys, <span style="font-style: italic; color: #8f74ff;">one calendar.</span></h2>
+        <p style="color: #b0aabd; font-size: 18px; text-wrap: pretty;" data-en="Your client doesn't have to learn anything new. Neither do you." data-es="Tu cliente no tiene que aprender nada nuevo. Vos tampoco.">Your client doesn't have to learn anything new. Neither do you.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 22px;">
+        <div style="border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 32px; background: #0c0a12; display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8f74ff;" data-en="Your client" data-es="Tu cliente">Your client</p>
+            <h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 27px;" data-en="Books in under a minute" data-es="Reserva en menos de un minuto">Books in under a minute</h3>
           </div>
-          <div style="display:flex; gap:10px; margin-left:auto;">
-            <a href="https://instagram.com/dabrin.najera" class="btn btn-ghost" style="padding: 8px 14px; font-size: 12px;">@dabrin.najera</a>
-            <a href="https://instagram.com/inkslate_cr" class="btn btn-ghost" style="padding: 8px 14px; font-size: 12px;">@inkslate_cr</a>
+          <ol style="display: flex; flex-direction: column; gap: 16px;">
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">1</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Opens your studio's link from Instagram or WhatsApp." data-es="Abre el link de tu estudio desde Instagram o WhatsApp.">Opens your studio's link from Instagram or WhatsApp.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">2</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Picks artist, service, day and time among the real open slots." data-es="Elige artista, servicio, día y hora entre los espacios libres reales.">Picks artist, service, day and time among the real open slots.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">3</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="The slot is held instantly, with a visible countdown." data-es="El horario queda apartado al instante, con contador visible.">The slot is held instantly, with a visible countdown.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">4</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Uploads the SINPE deposit receipt, if the service requires one." data-es="Sube el comprobante del depósito por SINPE, si el servicio lo pide.">Uploads the SINPE deposit receipt, if the service requires one.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">5</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Gets their code and follows the appointment status whenever they want." data-es="Recibe su código y sigue el estado de la cita cuando quiera.">Gets their code and follows the appointment status whenever they want.</span></li>
+          </ol>
+          <p style="border-top: 1px solid rgba(255,255,255,.08); padding-top: 18px; font-size: 15px; color: #8fbfa4; font-weight: 500;" data-en="No account. No password. Nothing to install." data-es="Sin crear cuenta. Sin contraseña. Sin instalar nada.">No account. No password. Nothing to install.</p>
+        </div>
+        <div style="border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 32px; background: #0c0a12; display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8f74ff;" data-en="Your studio" data-es="Tu estudio">Your studio</p>
+            <h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 27px;" data-en="Resolves it in three taps" data-es="Resuelve en tres toques">Resolves it in three taps</h3>
+          </div>
+          <ol style="display: flex; flex-direction: column; gap: 16px;">
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">1</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="You get a push notification, not one more chat message." data-es="Te llega la notificación al celular, no un mensaje más en el chat.">You get a push notification, not one more chat message.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">2</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="You review the receipt, already pre-read: amount, date and sender." data-es="Revisás el comprobante ya pre-leído: monto, fecha y remitente.">You review the receipt, already pre-read: amount, date and sender.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">3</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Approve or reject with a note, and the appointment lands on the artist's calendar." data-es="Aprobás o rechazás con nota, y la cita entra a la agenda del artista.">Approve or reject with a note, and the appointment lands on the artist's calendar.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">4</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="It syncs with your Google Calendar in both directions." data-es="Se sincroniza con tu Google Calendar en ambos sentidos.">It syncs with your Google Calendar in both directions.</span></li>
+            <li style="display: flex; gap: 14px; align-items: baseline;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8c8699; min-width: 16px;">5</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Reschedule, cancel or mark a no-show from the same panel." data-es="Reprogramás, cancelás o marcás no-show desde el mismo panel.">Reschedule, cancel or mark a no-show from the same panel.</span></li>
+          </ol>
+          <p style="border-top: 1px solid rgba(255,255,255,.08); padding-top: 18px; font-size: 15px; color: #8fbfa4; font-weight: 500;" data-en="The final call on every deposit is always yours." data-es="La decisión final sobre cada depósito siempre es tuya.">The final call on every deposit is always yours.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="producto" style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0; scroll-margin-top: 90px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; max-width: 40em;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="03 — The product" data-es="03 — El producto">03 — The product</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="This is what <span style=&quot;font-style: italic; color: #8f74ff;&quot;>your clients see.</span>" data-es-html="Esto es lo que ven <span style=&quot;font-style: italic; color: #8f74ff;&quot;>tus clientes.</span>">This is what <span style="font-style: italic; color: #8f74ff;">your clients see.</span></h2>
+        <p style="color: #b0aabd; font-size: 18px; text-wrap: pretty;" data-en="Real screenshots from the app. No mockups." data-es="Capturas reales de la app. Nada de mockups.">Real screenshots from the app. No mockups.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;">
+        <figure style="border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: #0c0a12; padding: 26px 26px 0; display: flex; flex-direction: column; gap: 20px; overflow: hidden;">
+          <figcaption style="display: flex; flex-direction: column; gap: 7px;"><h3 style="font-size: 19px; font-weight: 600;" data-en="Active studios, with a map" data-es="Estudios activos, con mapa">Active studios, with a map</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="Your studio shows up in the directory with distance, price from, and next open slot." data-es="Tu estudio aparece en el directorio con distancia, precio desde y próximo espacio libre.">Your studio shows up in the directory with distance, price from, and next open slot.</p></figcaption>
+          <img src="./assets/inkslate-directorio-estudios-costa-rica.png" alt="InkSlate directory with active barbershop and beauty studios in Costa Rica, a map and filters by business type" width="1206" height="2622" loading="lazy" decoding="async" style="width: 100%; border-radius: 16px 16px 0 0; border: 1px solid rgba(255,255,255,.1); border-bottom: 0; margin-bottom: -2px;" />
+        </figure>
+        <figure style="border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: #0c0a12; padding: 26px 26px 0; display: flex; flex-direction: column; gap: 20px; overflow: hidden;">
+          <figcaption style="display: flex; flex-direction: column; gap: 7px;"><h3 style="font-size: 19px; font-weight: 600;" data-en="Real availability, not back-and-forth" data-es="Disponibilidad real, no consultas">Real availability, not back-and-forth</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="Full days show as closed. Clients pick only from what you actually have open." data-es="Los días sin espacio se ven cerrados. El cliente elige entre lo que de verdad tenés libre.">Full days show as closed. Clients pick only from what you actually have open.</p></figcaption>
+          <img src="./assets/inkslate-calendario-disponibilidad-barberia.png" alt="InkSlate availability calendar for a barbershop, with full days marked and the open slots for the selected day" width="1206" height="2622" loading="lazy" decoding="async" style="width: 100%; border-radius: 16px 16px 0 0; border: 1px solid rgba(255,255,255,.1); border-bottom: 0; margin-bottom: -2px;" />
+        </figure>
+        <figure style="border: 1px solid rgba(255,255,255,.1); border-radius: 20px; background: #0c0a12; padding: 26px 26px 0; display: flex; flex-direction: column; gap: 20px; overflow: hidden;">
+          <figcaption style="display: flex; flex-direction: column; gap: 7px;"><h3 style="font-size: 19px; font-weight: 600;" data-en="Clear deposit before confirming" data-es="Depósito claro antes de confirmar">Clear deposit before confirming</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="Service, artist, time and amount on screen, with the time left to complete it." data-es="Servicio, artista, hora y monto a la vista, con el tiempo que queda para completar.">Service, artist, time and amount on screen, with the time left to complete it.</p></figcaption>
+          <img src="./assets/inkslate-resumen-reserva-deposito-sinpe.png" alt="InkSlate booking summary with the service, artist, time and the SINPE deposit required before confirming" width="1206" height="2622" loading="lazy" decoding="async" style="width: 100%; border-radius: 16px 16px 0 0; border: 1px solid rgba(255,255,255,.1); border-bottom: 0; margin-bottom: -2px;" />
+        </figure>
+      </div>
+    </section>
+
+    <section style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0;">
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; max-width: 40em;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="04 — Included" data-es="04 — Incluido">04 — Included</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="Six things that already <span style=&quot;font-style: italic; color: #8f74ff;&quot;>just work.</span>" data-es-html="Seis cosas que ya vienen <span style=&quot;font-style: italic; color: #8f74ff;&quot;>funcionando.</span>">Six things that already <span style="font-style: italic; color: #8f74ff;">just work.</span></h2>
+      </div>
+      <ul style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; overflow: hidden;">
+        <li style="background: #0c0a12; padding: 30px 28px; display: flex; flex-direction: column; gap: 9px;"><h3 style="font-size: 18.5px; font-weight: 600;" data-en="The slot is held instantly" data-es="El horario se aparta al instante">The slot is held instantly</h3><p style="color: #a8a2b6; font-size: 16px;" data-en="As soon as the client picks it, no one else can take it. A countdown shows how much time they have left." data-es="Apenas el cliente lo elige, nadie más lo puede tomar. Un contador le muestra cuánto tiempo tiene para terminar.">As soon as the client picks it, no one else can take it. A countdown shows how much time they have left.</p></li>
+        <li style="background: #0c0a12; padding: 30px 28px; display: flex; flex-direction: column; gap: 9px;"><h3 style="font-size: 18.5px; font-weight: 600;" data-en="SINPE deposits with assisted review" data-es="Depósitos por SINPE con revisión asistida">SINPE deposits with assisted review</h3><p style="color: #a8a2b6; font-size: 16px;" data-en="The receipt arrives already pre-read: amount, date and sender. You approve, reject, or ask for a re-upload." data-es="El comprobante llega ya pre-leído: monto, fecha y remitente. Vos aprobás, rechazás o pedís que lo suba de nuevo.">The receipt arrives already pre-read: amount, date and sender. You approve, reject, or ask for a re-upload.</p></li>
+        <li style="background: #0c0a12; padding: 30px 28px; display: flex; flex-direction: column; gap: 9px;"><h3 style="font-size: 18.5px; font-weight: 600;" data-en="Per-artist calendar and Google Calendar" data-es="Agenda por artista y Google Calendar">Per-artist calendar and Google Calendar</h3><p style="color: #a8a2b6; font-size: 16px;" data-en="Day and week view per artist, synced both ways with the calendar you already use." data-es="Vista del día y de la semana por artista, sincronizada en ambos sentidos con el calendario que ya usás.">Day and week view per artist, synced both ways with the calendar you already use.</p></li>
+        <li style="background: #0c0a12; padding: 30px 28px; display: flex; flex-direction: column; gap: 9px;"><h3 style="font-size: 18.5px; font-weight: 600;" data-en="Manual bookings and repeating blocks" data-es="Reserva manual y bloqueos repetidos">Manual bookings and repeating blocks</h3><p style="color: #a8a2b6; font-size: 16px;" data-en="What comes in over WhatsApp gets logged on the same calendar. Block lunch once and it repeats on its own." data-es="Lo que entra por WhatsApp lo anotás en la misma agenda. El almuerzo se bloquea una vez y se repite solo.">What comes in over WhatsApp gets logged on the same calendar. Block lunch once and it repeats on its own.</p></li>
+        <li style="background: #0c0a12; padding: 30px 28px; display: flex; flex-direction: column; gap: 9px;"><h3 style="font-size: 18.5px; font-weight: 600;" data-en="Your own profile with a shareable link" data-es="Perfil propio con link para compartir">Your own profile with a shareable link</h3><p style="color: #a8a2b6; font-size: 16px;" data-en="Services, prices, artists and location on the map, in one link that goes straight to your Instagram bio." data-es="Servicios, precios, artistas y ubicación en el mapa, en un link que va directo a la bio de Instagram.">Services, prices, artists and location on the map, in one link that goes straight to your Instagram bio.</p></li>
+        <li style="background: #0c0a12; padding: 30px 28px; display: flex; flex-direction: column; gap: 9px;"><h3 style="font-size: 18.5px; font-weight: 600;" data-en="Creative brief, when it's needed" data-es="Brief creativo, cuando hace falta">Creative brief, when it's needed</h3><p style="color: #a8a2b6; font-size: 16px;" data-en="Reference photos and a note for the artist before the appointment. It only turns on for the services that need it." data-es="Fotos de referencia y nota para el artista antes de la cita. Se activa solo en los servicios que lo necesitan.">Reference photos and a note for the artist before the appointment. It only turns on for the services that need it.</p></li>
+      </ul>
+    </section>
+
+    <section id="negocios" style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0; scroll-margin-top: 90px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; max-width: 40em;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="05 — For your business" data-es="05 — Para tu negocio">05 — For your business</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="One system, <span style=&quot;font-style: italic; color: #8f74ff;&quot;>four ways to work.</span>" data-es-html="Un mismo sistema, <span style=&quot;font-style: italic; color: #8f74ff;&quot;>cuatro formas de trabajar.</span>">One system, <span style="font-style: italic; color: #8f74ff;">four ways to work.</span></h2>
+        <p style="color: #b0aabd; font-size: 18px; text-wrap: pretty;" data-en="The vocabulary, the options, and what's asked of the client all change. The calendar stays the same." data-es="Cambia el vocabulario, las opciones y lo que se le pide al cliente. La agenda es la misma.">The vocabulary, the options, and what's asked of the client all change. The calendar stays the same.</p>
+      </div>
+      <ul style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
+        <li><a href="/para-tatuadores" style="border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 28px 26px; background: #0c0a12; display: flex; flex-direction: column; gap: 12px; height: 100%; color: #f5f3fa;"><h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 24px;" data-en="Tattoo artists" data-es="Tatuadores">Tattoo artists</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="Long sessions, mandatory deposit and a reference-photo brief before booking." data-es="Sesiones largas, depósito obligatorio y brief con referencias antes de agendar.">Long sessions, mandatory deposit and a reference-photo brief before booking.</p></a></li>
+        <li><a href="/para-barberias" style="border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 28px 26px; background: #0c0a12; display: flex; flex-direction: column; gap: 12px; height: 100%; color: #f5f3fa;"><h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 24px;" data-en="Barbershops" data-es="Barberías">Barbershops</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="30-minute cuts, several chairs running in parallel, and clients who come back every two weeks." data-es="Cortes de 30 minutos, varias sillas en paralelo y clientes que vuelven cada dos semanas.">30-minute cuts, several chairs running in parallel, and clients who come back every two weeks.</p></a></li>
+        <li><a href="/para-salones-de-belleza" style="border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 28px 26px; background: #0c0a12; display: flex; flex-direction: column; gap: 12px; height: 100%; color: #f5f3fa;"><h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 24px;" data-en="Beauty salons" data-es="Salones de belleza">Beauty salons</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="Two- and three-hour services, a team with specialties, and pricing by treatment." data-es="Servicios de dos y tres horas, equipo con especialidades y precios por tratamiento.">Two- and three-hour services, a team with specialties, and pricing by treatment.</p></a></li>
+        <li><a href="/para-nail-artists" style="border: 1px solid rgba(255,255,255,.1); border-radius: 18px; padding: 28px 26px; background: #0c0a12; display: flex; flex-direction: column; gap: 12px; height: 100%; color: #f5f3fa;"><h3 style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 400; font-size: 24px;" data-en="Nail artists" data-es="Nail artists">Nail artists</h3><p style="color: #a8a2b6; font-size: 15.5px;" data-en="You work alone, from home or a shared studio, and the design gets defined before the appointment." data-es="Trabajás sola, desde casa o en estudio compartido, y el diseño se define antes de la cita.">You work alone, from home or a shared studio, and the design gets defined before the appointment.</p></a></li>
+      </ul>
+    </section>
+
+    <section style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0;">
+      <div style="border: 1px solid rgba(255,255,255,.1); border-radius: 24px; background: linear-gradient(140deg, #100d1a, #0a0810); padding: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="06 — Coexistence" data-es="06 — Convivencia">06 — Coexistence</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em; text-wrap: pretty;" data-en-html="You don't have to drop <span style=&quot;font-style: italic; color: #8f74ff;&quot;>WhatsApp.</span>" data-es-html="No tenés que dejar <span style=&quot;font-style: italic; color: #8f74ff;&quot;>WhatsApp.</span>">You don't have to drop <span style="font-style: italic; color: #8f74ff;">WhatsApp.</span></h2>
+          <p style="color: #b8b3c6; font-size: 18px; text-wrap: pretty;" data-en="Your regulars will keep messaging you, and that's fine. InkSlate doesn't compete with that: what comes in through chat or Instagram gets logged on the same calendar, and every appointment has a one-click link straight to the client's WhatsApp." data-es="Tus clientes de siempre van a seguir escribiéndote, y está bien. InkSlate no compite con eso: lo que entra por chat o por Instagram lo anotás en la misma agenda, y desde cada cita tenés un click directo al WhatsApp del cliente.">Your regulars will keep messaging you, and that's fine. InkSlate doesn't compete with that: what comes in through chat or Instagram gets logged on the same calendar, and every appointment has a one-click link straight to the client's WhatsApp.</p>
+        </div>
+        <ul style="display: flex; flex-direction: column; gap: 14px;">
+          <li style="display: flex; gap: 14px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 15px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="One single source of truth, instead of two calendars that never match." data-es="Una sola fuente de verdad, en vez de dos calendarios que nunca coinciden.">One single source of truth, instead of two calendars that never match.</span></li>
+          <li style="display: flex; gap: 14px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 15px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="The booking link answers scheduling questions while you're working." data-es="El link de reserva contesta las preguntas de horario mientras vos trabajás.">The booking link answers scheduling questions while you're working.</span></li>
+          <li style="display: flex; gap: 14px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 15px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="New clients arrive through the directory, without going through your inbox." data-es="Los clientes nuevos llegan por el directorio, sin pasar por tu bandeja.">New clients arrive through the directory, without going through your inbox.</span></li>
+          <li style="display: flex; gap: 14px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 15px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="Optional spam protection, off until you turn it on." data-es="Protección contra spam opcional, apagada hasta que vos la prendás.">Optional spam protection, off until you turn it on.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="07 — Cross-platform" data-es="07 — Multiplataforma">07 — Cross-platform</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="On the computer and <span style=&quot;font-style: italic; color: #8f74ff;&quot;>in your pocket.</span>" data-es-html="En la compu y <span style=&quot;font-style: italic; color: #8f74ff;&quot;>en el bolsillo.</span>">On the computer and <span style="font-style: italic; color: #8f74ff;">in your pocket.</span></h2>
+          <p style="color: #b8b3c6; font-size: 18px; text-wrap: pretty;" data-en="InkSlate has apps published on iOS and Android, with push notifications so you don't have to stare at the screen. The web works the same from any browser, and your client never needs to install anything to book." data-es="InkSlate tiene app publicada en iOS y en Android, con notificaciones push para que no tengas que estar mirando la pantalla. La web funciona igual desde cualquier navegador, y tu cliente nunca necesita instalar nada para reservar.">InkSlate has apps published on iOS and Android, with push notifications so you don't have to stare at the screen. The web works the same from any browser, and your client never needs to install anything to book.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="https://apps.apple.com/cr/app/inkslate/id6795252784" rel="noopener" style="border: 1px solid rgba(255,255,255,.18); border-radius: 14px; padding: 14px 22px; display: flex; flex-direction: column; gap: 2px; color: #f5f3fa;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #8a8499;" data-en="Download on the" data-es="Descargar en el">Download on the</span><span style="font-weight: 600; font-size: 17px;">App Store</span></a>
+            <a href="https://play.google.com/store/apps/details?id=com.inkslate.app&pcampaignid=web_share" rel="noopener" style="border: 1px solid rgba(255,255,255,.18); border-radius: 14px; padding: 14px 22px; display: flex; flex-direction: column; gap: 2px; color: #f5f3fa;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #8a8499;" data-en="Available on" data-es="Disponible en">Available on</span><span style="font-weight: 600; font-size: 17px;">Google Play</span></a>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WAITLIST CTA -->
-<section class="v1-cta-band" id="waitlist">
-  <div class="container-tight">
-    <div class="eyebrow" data-en="Early access &middot; Issue 01" data-es="Acceso anticipado &middot; Edición 01">Early access &middot; Issue 01</div>
-    <h2>
-      <span data-en="The studio you run," data-es="El estudio que llevas,">The studio you run,</span><br/>
-      <em data-en="finally on a good system." data-es="por fin en un buen sistema.">finally on a good system.</em>
-    </h2>
-    <p data-en="Start free today — we'll set up your studio with you. No credit card, no commitment." data-es="Empieza gratis hoy — configuramos tu estudio con vos. Sin tarjeta, sin compromiso.">
-      Start free today — we'll set up your studio with you. No credit card, no commitment.
-    </p>
-    <form class="waitlist-form" id="waitlist-form">
-      <input type="text" class="waitlist-input" id="wl-studio" required
-        placeholder="Studio name"
-        data-ph-en="Studio name" data-ph-es="Nombre del estudio" />
-      <input type="tel" class="waitlist-input" id="wl-whatsapp" required
-        placeholder="WhatsApp (+506...)"
-        data-ph-en="WhatsApp (+506...)" data-ph-es="WhatsApp (+506...)" />
-      <input type="email" class="waitlist-input" id="wl-email" required
-        placeholder="you@studio.com"
-        data-ph-en="you@studio.com" data-ph-es="tu@estudio.com" />
-      <button type="submit" class="waitlist-submit" id="wl-btn"
-        data-en="Start free &rarr;" data-es="Empieza gratis &rarr;">Start free &rarr;</button>
-      <div class="waitlist-msg" id="wl-msg"></div>
-    </form>
-    <div style="margin-top: 14px; font-size: 12px; color: var(--text-mute);" data-en="Special pricing for our first studios. Limited spots." data-es="Precio especial para nuestros primeros estudios. Cupos limitados.">Special pricing for our first studios. Limited spots.</div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="v1-footer" id="sales">
-  <div class="container">
-    <div class="v1-footer-grid">
-      <div>
-        <div class="v1-brand" style="margin-bottom: 18px;">
-          <div class="glyph">I</div>
-          <strong>InkSlate</strong>
-        </div>
-        <p style="font-size: 13px; color: var(--text-dim); max-width: 360px; margin: 0;" data-en="Booking that respects the craft. Made in Costa Rica." data-es="Reservas que respetan el oficio. Hecho en Costa Rica.">
-          Booking that respects the craft. Made in Costa Rica.
-        </p>
-      </div>
-      <div>
-        <h5 data-en="Product" data-es="Producto">Product</h5>
-        <div class="v1-footer-links">
-          <a href="#how" data-en="How it works" data-es="Cómo funciona">How it works</a>
-          <a href="#features" data-en="Features" data-es="Funciones">Features</a>
-          <a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-          <a href="#waitlist" data-en="Waitlist" data-es="Lista de espera">Waitlist</a>
+        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 18px;">
+          <img src="./assets/inkslate-directorio-estudios-costa-rica.png" alt="The InkSlate app on a phone, showing the studio directory with active bookings" width="1206" height="2622" loading="lazy" decoding="async" style="width: 44%; border-radius: 22px; border: 1px solid rgba(255,255,255,.12);" />
+          <img src="./assets/inkslate-reserva-confirmada-codigo.png" alt="The InkSlate app showing a confirmed booking with its code, ready to send the deposit receipt" width="1206" height="2622" loading="lazy" decoding="async" style="width: 44%; border-radius: 22px; border: 1px solid rgba(255,255,255,.12); margin-bottom: 36px;" />
         </div>
       </div>
-      <div>
-        <h5 data-en="Contact" data-es="Contacto">Contact</h5>
-        <div class="v1-footer-links">
-          <a href="mailto:hello@inkslate.app">hello@inkslate.app</a>
-          <a href="https://instagram.com/inkslate_cr">@inkslate_cr</a>
-          <a href="https://instagram.com/dabrin.najera">@dabrin.najera</a>
+    </section>
+
+    <section id="precio" style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0; scroll-margin-top: 90px;">
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 44px; align-items: center; text-align: center;">
+        <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="08 — Pricing" data-es="08 — Precio">08 — Pricing</p>
+        <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="One plan, <span style=&quot;font-style: italic; color: #8f74ff;&quot;>everything included.</span>" data-es-html="Un plan, <span style=&quot;font-style: italic; color: #8f74ff;&quot;>todo incluido.</span>">One plan, <span style="font-style: italic; color: #8f74ff;">everything included.</span></h2>
+      </div>
+      <div style="max-width: 620px; margin: 0 auto; border: 1px solid rgba(124,92,255,.35); border-radius: 24px; background: linear-gradient(160deg, #130f22, #0b0912); padding: 44px; display: flex; flex-direction: column; gap: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8fbfa4;" data-en="First month free" data-es="Primer mes gratis">First month free</p>
+          <p style="display: flex; align-items: baseline; gap: 8px;"><span style="font-family: 'Playfair Display', serif; font-size: 62px; line-height: 1;">₡10.000</span><span style="color: #a8a2b6; font-size: 18px;" data-en="per month" data-es="al mes">per month</span></p>
+          <p style="color: #a8a2b6; font-size: 16px;" data-en="Per studio, with unlimited artists and services." data-es="Por estudio, con artistas y servicios ilimitados.">Per studio, with unlimited artists and services.</p>
+        </div>
+        <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 13px; border-top: 1px solid rgba(255,255,255,.09); border-bottom: 1px solid rgba(255,255,255,.09); padding: 24px 0;">
+          <li style="display: flex; gap: 11px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16px;" data-en="Unlimited online bookings" data-es="Reservas online ilimitadas">Unlimited online bookings</span></li>
+          <li style="display: flex; gap: 11px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16px;" data-en="No per-booking fee" data-es="Sin comisión por reserva">No per-booking fee</span></li>
+          <li style="display: flex; gap: 11px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16px;" data-en="iOS and Android apps" data-es="Apps de iOS y Android">iOS and Android apps</span></li>
+          <li style="display: flex; gap: 11px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16px;" data-en="SINPE deposits" data-es="Depósitos por SINPE">SINPE deposits</span></li>
+          <li style="display: flex; gap: 11px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16px;" data-en="Two-way Google Calendar" data-es="Google Calendar en dos vías">Two-way Google Calendar</span></li>
+          <li style="display: flex; gap: 11px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16px;" data-en="Profile in the directory" data-es="Perfil en el directorio">Profile in the directory</span></li>
+        </ul>
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .04em; color: #837d95; text-align: center;" data-en="No card · No contract · Cancel anytime" data-es="Sin tarjeta · Sin contrato · Cancelás cuando querés">No card · No contract · Cancel anytime</p>
         </div>
       </div>
-    </div>
-    <div class="v1-footer-bottom">
-      <span data-en="&copy; 2026 InkSlate. All rights reserved." data-es="&copy; 2026 InkSlate. Todos los derechos reservados.">&copy; 2026 InkSlate. All rights reserved.</span>
-      <span data-en="Designed and built in San Jose, CR." data-es="Diseñado y hecho en San José, CR.">Designed and built in San Jose, CR.</span>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/50664304601?text=Hola!%20Me%20interesa%20InkSlate%20para%20mi%20estudio" class="wa-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+    <section id="preguntas" style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 0; scroll-margin-top: 90px;">
+      <div style="display: grid; grid-template-columns: .82fr 1.18fr; gap: 56px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 16px; position: sticky; top: 110px;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="09 — FAQ" data-es="09 — Preguntas">09 — FAQ</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 42px; line-height: 1.1; letter-spacing: -0.02em;" data-en-html="What people ask <span style=&quot;font-style: italic; color: #8f74ff;&quot;>before getting started.</span>" data-es-html="Lo que preguntan <span style=&quot;font-style: italic; color: #8f74ff;&quot;>antes de empezar.</span>">What people ask <span style="font-style: italic; color: #8f74ff;">before getting started.</span></h2>
+          <p style="color: #b0aabd; font-size: 17px;" data-en="If you still have a question, write us on WhatsApp and we'll answer the same day." data-es="Si te queda otra duda, escribinos por WhatsApp y te contestamos el mismo día.">If you still have a question, write us on WhatsApp and we'll answer the same day.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; overflow: hidden;">
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="Do my clients have to install an app to book?" data-es="¿Mis clientes tienen que instalar una app para reservar?">Do my clients have to install an app to book?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="No. The client opens your studio's link from the browser and books without creating an account or password. If they want, they can also use the iOS or Android app, but it's never required." data-es="No. El cliente abre el link de tu estudio desde el navegador y reserva sin crear cuenta ni contraseña. Si quiere, también puede usar la app de iOS o Android, pero nunca es obligatorio.">No. The client opens your studio's link from the browser and books without creating an account or password. If they want, they can also use the iOS or Android app, but it's never required.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="Do I have to stop using WhatsApp?" data-es="¿Tengo que dejar de usar WhatsApp?">Do I have to stop using WhatsApp?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="No. InkSlate coexists with WhatsApp. Whatever comes in through chat or Instagram, you log manually on the same calendar, so you have one calendar instead of two." data-es="No. InkSlate convive con WhatsApp. Lo que llega por chat o Instagram lo anotás manualmente en la misma agenda, así tenés un solo calendario en vez de dos.">No. InkSlate coexists with WhatsApp. Whatever comes in through chat or Instagram, you log manually on the same calendar, so you have one calendar instead of two.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="Does it work if I work alone, without a team?" data-es="¿Sirve si trabajo solo, sin equipo?">Does it work if I work alone, without a team?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="Yes. You can have a single artist with your own services, prices and hours. The per-artist calendar works the same when the artist is you." data-es="Sí. Podés tener un único artista con tus servicios, precios y horarios. La agenda por artista sirve igual cuando el artista sos vos.">Yes. You can have a single artist with your own services, prices and hours. The per-artist calendar works the same when the artist is you.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="How do SINPE deposits work?" data-es="¿Cómo funcionan los depósitos por SINPE?">How do SINPE deposits work?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="You define which services require a deposit and for how much. The client uploads the receipt from their phone, an automatic assistant pre-reads the amount, date and sender, and you approve or reject with one tap. The final decision is always the studio's." data-es="Definís qué servicios requieren depósito y de cuánto. El cliente sube el comprobante desde el celular, un asistente automático pre-lee el monto, la fecha y el remitente, y vos aprobás o rechazás con un toque. La decisión final siempre es del estudio.">You define which services require a deposit and for how much. The client uploads the receipt from their phone, an automatic assistant pre-reads the amount, date and sender, and you approve or reject with one tap. The final decision is always the studio's.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="How much does InkSlate cost in Costa Rica?" data-es="¿Cuánto cuesta InkSlate en Costa Rica?">How much does InkSlate cost in Costa Rica?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="The first month is free, then it's ₡10,000/month per studio, with no per-booking fee and no contract." data-es="El primer mes es gratis y después son ₡10.000 al mes por estudio, sin comisión por reserva y sin contrato.">The first month is free, then it's ₡10,000/month per studio, with no per-booking fee and no contract.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="Does it sync with Google Calendar?" data-es="¿Se sincroniza con Google Calendar?">Does it sync with Google Calendar?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="Yes, both ways: InkSlate bookings show up on your Google Calendar, and whatever you block there is reflected in your availability." data-es="Sí, en ambos sentidos: las reservas de InkSlate aparecen en tu Google Calendar, y lo que bloqueás allá se refleja en tu disponibilidad.">Yes, both ways: InkSlate bookings show up on your Google Calendar, and whatever you block there is reflected in your availability.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="Does it work for barbershops and salons, or only for tattoo studios?" data-es="¿Sirve para barberías y salones, o solo para tatuaje?">Does it work for barbershops and salons, or only for tattoo studios?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en-html="It works for any business that runs on appointments. The vocabulary and options change based on business type: the creative brief with reference photos, for example, only turns on for the services that need it. Check out the pages for <a href=&quot;/para-barberias&quot;>barbershops</a>, <a href=&quot;/para-salones-de-belleza&quot;>beauty salons</a> and <a href=&quot;/para-nail-artists&quot;>nail artists</a>." data-es-html="Sirve para cualquier negocio que trabaje con citas. El vocabulario y las opciones cambian según el tipo de negocio: el brief creativo con fotos de referencia, por ejemplo, se activa solo en los servicios que lo necesitan. Mirá las páginas de <a href=&quot;/para-barberias&quot;>barberías</a>, <a href=&quot;/para-salones-de-belleza&quot;>salones de belleza</a> y <a href=&quot;/para-nail-artists&quot;>nail artists</a>.">It works for any business that runs on appointments. The vocabulary and options change based on business type: the creative brief with reference photos, for example, only turns on for the services that need it. Check out the pages for <a href="/para-barberias">barbershops</a>, <a href="/para-salones-de-belleza">beauty salons</a> and <a href="/para-nail-artists">nail artists</a>.</p>
+          </details>
+          <details style="background: #0c0a12; padding: 24px 28px;">
+            <summary style="display: flex; align-items: center; gap: 18px;"><h3 style="font-size: 18px; font-weight: 600; flex: 1;" data-en="What happens if two people pick the same time slot?" data-es="¿Qué pasa si dos personas eligen el mismo horario?">What happens if two people pick the same time slot?</h3><span class="plus" style="color: #8f74ff; font-size: 20px; transition: transform .2s;">+</span></summary>
+            <p style="color: #b0aabd; font-size: 16.5px; padding-top: 14px; max-width: 46em;" data-en="It can't happen. As soon as someone picks a slot, it's held for them, with a visible countdown of the time they have to complete the booking." data-es="No puede pasar. Apenas alguien elige un horario queda apartado para esa persona, con un contador visible del tiempo que tiene para completar la reserva.">It can't happen. As soon as someone picks a slot, it's held for them, with a visible countdown of the time they have to complete the booking.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" style="max-width: 1240px; margin: 0 auto; padding: 130px 28px 0; scroll-margin-top: 90px;">
+      <div style="border: 1px solid rgba(255,255,255,.1); border-radius: 26px; background: radial-gradient(120% 140% at 50% 0%, rgba(124,92,255,.2), transparent 62%), #0b0910; padding: 62px 56px; display: grid; grid-template-columns: .9fr 1.1fr; gap: 52px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8c8699;" data-en="10 — Get started" data-es="10 — Empezar">10 — Get started</p>
+          <h2 style="font-family: 'Playfair Display', serif; font-weight: 400; font-size: 44px; line-height: 1.08; letter-spacing: -0.025em; text-wrap: pretty;" data-en-html="Tell us about your studio and <span style=&quot;font-style: italic; color: #a894ff;&quot;>we'll set it up with you.</span>" data-es-html="Contanos de tu estudio y <span style=&quot;font-style: italic; color: #a894ff;&quot;>lo armamos con vos.</span>">Tell us about your studio and <span style="font-style: italic; color: #a894ff;">we'll set it up with you.</span></h2>
+          <p style="color: #b8b3c6; font-size: 18px; text-wrap: pretty;" data-en="Leave us your info and we'll write you the same day to set up artists, services and hours. The first month is free and we don't ask for a card." data-es="Dejanos tus datos y te escribimos el mismo día para configurar artistas, servicios y horarios. El primer mes es gratis y no pedimos tarjeta.">Leave us your info and we'll write you the same day to set up artists, services and hours. The first month is free and we don't ask for a card.</p>
+          <ul style="display: flex; flex-direction: column; gap: 11px; border-top: 1px solid rgba(255,255,255,.09); padding-top: 20px;">
+            <li style="display: flex; gap: 12px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="We help you through the initial setup." data-es="Te acompañamos en la configuración inicial.">We help you through the initial setup.</span></li>
+            <li style="display: flex; gap: 12px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="We reply by email or WhatsApp, whichever you prefer." data-es="Te respondemos por correo o WhatsApp, como preferís.">We reply by email or WhatsApp, whichever you prefer.</span></li>
+            <li style="display: flex; gap: 12px; align-items: baseline;"><span style="color: #8fbfa4; font-size: 14px;">✓</span><span style="color: #ccc7d8; font-size: 16.5px;" data-en="You talk directly with the people who build InkSlate." data-es="Hablás directamente con quienes hacemos InkSlate.">You talk directly with the people who build InkSlate.</span></li>
+          </ul>
+          <p style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; letter-spacing: .04em; color: #8c8699;"><span data-en="Or write us at" data-es="O escribinos a">Or write us at</span> <a href="mailto:hello@inkslate.app">hello@inkslate.app</a></p>
+        </div>
+        <form id="ink-form" style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <label style="display: flex; flex-direction: column; gap: 7px;"><span style="font-size: 14px; color: #b0aabd;" data-en="Your name" data-es="Tu nombre">Your name</span><input name="nombre" type="text" required="required" autocomplete="name" placeholder="Full name" data-ph-en="Full name" data-ph-es="Nombre y apellido" style="background: #0c0a12; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px 16px; color: #f5f3fa; font-family: inherit; font-size: 16px; min-height: 48px;" /></label>
+            <label style="display: flex; flex-direction: column; gap: 7px;"><span style="font-size: 14px; color: #b0aabd;" data-en="Studio name" data-es="Nombre del estudio">Studio name</span><input name="estudio" type="text" required="required" placeholder="How your clients know you" data-ph-en="How your clients know you" data-ph-es="Como te conocen tus clientes" style="background: #0c0a12; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px 16px; color: #f5f3fa; font-family: inherit; font-size: 16px; min-height: 48px;" /></label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 7px;"><span style="font-size: 14px; color: #b0aabd;" data-en="Business type" data-es="Tipo de negocio">Business type</span>
+            <select name="tipo" required="required" style="background: #0c0a12; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px 16px; color: #f5f3fa; font-family: inherit; font-size: 16px; min-height: 48px;">
+              <option value="Estudio de tatuaje" data-en="Tattoo studio" data-es="Estudio de tatuaje">Tattoo studio</option>
+              <option value="Barbería" data-en="Barbershop" data-es="Barbería">Barbershop</option>
+              <option value="Salón de belleza" data-en="Beauty salon" data-es="Salón de belleza">Beauty salon</option>
+              <option value="Nail artist" data-en="Nail artist" data-es="Nail artist">Nail artist</option>
+              <option value="Otro negocio con citas" data-en="Other appointment-based business" data-es="Otro negocio con citas">Other appointment-based business</option>
+            </select>
+          </label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <label style="display: flex; flex-direction: column; gap: 7px;"><span style="font-size: 14px; color: #b0aabd;" data-en="Email" data-es="Correo">Email</span><input name="correo" type="email" required="required" autocomplete="email" placeholder="you@email.com" data-ph-en="you@email.com" data-ph-es="tu@correo.com" style="background: #0c0a12; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px 16px; color: #f5f3fa; font-family: inherit; font-size: 16px; min-height: 48px;" /></label>
+            <label style="display: flex; flex-direction: column; gap: 7px;"><span style="font-size: 14px; color: #b0aabd;"><span data-en="WhatsApp" data-es="WhatsApp">WhatsApp</span> <span style="color: #8c8699;" data-en="(optional)" data-es="(opcional)">(optional)</span></span><input name="whatsapp" type="tel" autocomplete="tel" placeholder="8888 8888" style="background: #0c0a12; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px 16px; color: #f5f3fa; font-family: inherit; font-size: 16px; min-height: 48px;" /></label>
+          </div>
+          <label style="display: flex; flex-direction: column; gap: 7px;"><span style="font-size: 14px; color: #b0aabd;"><span data-en="Tell us about your calendar" data-es="Contanos algo de tu agenda">Tell us about your calendar</span> <span style="color: #8c8699;" data-en="(optional)" data-es="(opcional)">(optional)</span></span><textarea name="mensaje" rows="3" placeholder="How many artists, how you book today, what you'd like to solve." data-ph-en="How many artists, how you book today, what you'd like to solve." data-ph-es="Cuántos artistas son, cómo agendás hoy, qué te gustaría resolver." style="background: #0c0a12; border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 14px 16px; color: #f5f3fa; font-family: inherit; font-size: 16px; resize: vertical;"></textarea></label>
+          <button type="submit" id="ink-form-btn" style="background: #7c5cff; color: #fff; font-weight: 600; font-size: 17px; padding: 17px 30px; border: 0; border-radius: 999px; font-family: inherit; cursor: pointer; min-height: 54px;" data-en="I want to try InkSlate" data-es="Quiero probar InkSlate">I want to try InkSlate</button>
+          <p id="ink-form-msg" style="font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: .04em; color: #8c8699; text-align: center;" data-en="We reply the same day. No commitment." data-es="Te respondemos el mismo día. Sin compromiso.">We reply the same day. No commitment.</p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="margin-top: 110px; border-top: 1px solid rgba(255,255,255,.08);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 56px 28px 40px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; align-items: center; gap: 11px;">
+          <span style="width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(160deg, #7c5cff, #4c2fd6); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: #fff;">I</span>
+          <span style="font-weight: 700; font-size: 18px; letter-spacing: -0.02em;">InkSlate</span>
+        </div>
+        <p style="color: #8f8a9c; font-size: 15px; max-width: 26em;" data-en="Online appointment and booking system for tattoo studios, barbershops, beauty salons and nail artists in Costa Rica." data-es="Sistema de citas y reservas online para estudios de tatuaje, barberías, salones de belleza y nail artists en Costa Rica.">Online appointment and booking system for tattoo studios, barbershops, beauty salons and nail artists in Costa Rica.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #8c8699;" data-en="By business type" data-es="Por tipo de negocio">By business type</h4>
+        <a href="/para-tatuadores" style="color: #b0aabd; font-size: 15px;" data-en="Software for tattoo artists" data-es="Software para tatuadores">Software for tattoo artists</a>
+        <a href="/para-barberias" style="color: #b0aabd; font-size: 15px;" data-en="Software for barbershops" data-es="Software para barberías">Software for barbershops</a>
+        <a href="/para-salones-de-belleza" style="color: #b0aabd; font-size: 15px;" data-en="Booking for beauty salons" data-es="Agenda para salón de belleza">Booking for beauty salons</a>
+        <a href="/para-nail-artists" style="color: #b0aabd; font-size: 15px;" data-en="Booking for nail artists" data-es="Agenda para nail artists">Booking for nail artists</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #8c8699;" data-en="Product" data-es="Producto">Product</h4>
+        <a href="#como-funciona" style="color: #b0aabd; font-size: 15px;" data-en="How it works" data-es="Cómo funciona">How it works</a>
+        <a href="#precio" style="color: #b0aabd; font-size: 15px;" data-en="Pricing" data-es="Precio">Pricing</a>
+        <a href="#preguntas" style="color: #b0aabd; font-size: 15px;" data-en="FAQ" data-es="Preguntas frecuentes">FAQ</a>
+        <a href="https://apps.apple.com/cr/app/inkslate/id6795252784" rel="noopener" style="color: #b0aabd; font-size: 15px;" data-en="iOS app" data-es="App para iOS">iOS app</a>
+        <a href="https://play.google.com/store/apps/details?id=com.inkslate.app&pcampaignid=web_share" rel="noopener" style="color: #b0aabd; font-size: 15px;" data-en="Android app" data-es="App para Android">Android app</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: #8c8699;">InkSlate</h4>
+        <a href="/terminos" style="color: #b0aabd; font-size: 15px;" data-en="Terms" data-es="Términos">Terms</a>
+        <a href="/privacidad" style="color: #b0aabd; font-size: 15px;" data-en="Privacy" data-es="Privacidad">Privacy</a>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 28px 44px;">
+      <p style="border-top: 1px solid rgba(255,255,255,.07); padding-top: 22px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; letter-spacing: .06em; color: #8c8699;" data-en="© 2026 InkSlate · Made in Costa Rica" data-es="© 2026 InkSlate · Hecho en Costa Rica">© 2026 InkSlate · Made in Costa Rica</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/50664304601" rel="noopener" aria-label="Escribinos por WhatsApp" style="position: fixed; right: 22px; bottom: 22px; z-index: 50; background: #0c0a12; border: 1px solid rgba(255,255,255,.16); color: #f5f3fa; border-radius: 999px; padding: 13px 20px; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 14px 40px rgba(0,0,0,.6);"><span style="width: 8px; height: 8px; border-radius: 50%; background: #8fbfa4;"></span><span data-en="Message us" data-es="Escribinos">Message us</span></a>
+
+</div>
 
 <script src="i18n.js"></script>
 <script>
 (function() {
   const API = 'https://inkslate-production.up.railway.app';
-  const form = document.getElementById('waitlist-form');
-  const btn = document.getElementById('wl-btn');
-  const msg = document.getElementById('wl-msg');
+  const form = document.getElementById('ink-form');
+  const btn = document.getElementById('ink-form-btn');
+  const msg = document.getElementById('ink-form-msg');
 
   const texts = {
-    en: { sending: 'Sending...', ok: 'Done! We\'ll be in touch soon.', err: 'Something went wrong. DM us on Instagram instead.', btn: 'Start free →' },
-    es: { sending: 'Enviando...', ok: '¡Listo! Nos ponemos en contacto pronto.', err: 'Algo salió mal. Escribinos por Instagram.', btn: 'Empieza gratis →' },
+    en: { sending: 'Sending...', ok: "Done! We'll be in touch soon.", err: 'Something went wrong. DM us on Instagram instead.' },
+    es: { sending: 'Enviando...', ok: '¡Listo! Nos ponemos en contacto pronto.', err: 'Algo salió mal. Escribinos por Instagram.' },
   };
 
   function t(key) {
@@ -806,31 +436,37 @@
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const studioName = document.getElementById('wl-studio').value.trim();
-    const whatsapp = document.getElementById('wl-whatsapp').value.trim();
-    const email = document.getElementById('wl-email').value.trim();
+    const f = new FormData(form);
+    const v = (k) => (f.get(k) || '').toString().trim();
+    const studioName = v('estudio');
+    const whatsapp = v('whatsapp');
+    const email = v('correo');
 
     btn.disabled = true;
     btn.textContent = t('sending');
     msg.textContent = '';
-    msg.className = 'waitlist-msg';
 
     try {
       const res = await fetch(API + '/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ studioName, whatsapp, email }),
+        body: JSON.stringify({
+          studioName,
+          whatsapp,
+          email,
+          nombre: v('nombre'),
+          tipo: v('tipo'),
+          mensaje: v('mensaje'),
+        }),
       });
       if (!res.ok) throw new Error('fail');
       msg.textContent = t('ok');
-      msg.className = 'waitlist-msg waitlist-msg--ok';
       form.reset();
     } catch {
       msg.textContent = t('err');
-      msg.className = 'waitlist-msg waitlist-msg--err';
     } finally {
       btn.disabled = false;
-      btn.textContent = t('btn');
+      btn.textContent = (typeof inkGetLang === 'function' && inkGetLang() === 'es') ? 'Quiero probar InkSlate' : 'I want to try InkSlate';
     }
   });
 })();
