@@ -26,6 +26,10 @@
     document.querySelectorAll('.lang-toggle button').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.lang === lang);
     });
+    document.querySelectorAll('[data-href-en]').forEach(el => {
+      const href = el.dataset['href' + lang.charAt(0).toUpperCase() + lang.slice(1)];
+      if (href) el.href = href;
+    });
     // Update placeholder text on form inputs
     document.querySelectorAll('[data-ph-en]').forEach(el => {
       const ph = el.dataset['ph' + lang.charAt(0).toUpperCase() + lang.slice(1)];
